@@ -220,101 +220,64 @@
       gap: 16px;
       margin-bottom: 20px;
     }
-    .coin-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      padding: 20px;
-      cursor: pointer;
-      transition: box-shadow .2s, border-color .2s;
-      position: relative;
-      overflow: hidden;
+    /* ── Monitor Table ── */
+    .monitor-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px; gap: 12px; flex-wrap: wrap;
     }
-    .coin-card:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
-    .coin-card.rapid-mover-card { border-top: 3px solid var(--risk-mover); }
-    .coin-card-top {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      margin-bottom: 16px;
+    .risk-legend-inline { display: flex; gap: 16px; flex-wrap: wrap; }
+    .risk-legend-item {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 11px; color: var(--text-muted);
     }
-    .coin-symbol {
-      font-size: 18px; font-weight: 700;
-      font-family: 'Fira Code', monospace;
+    .risk-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .monitor-filter-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+    .mf-tab {
+      padding: 5px 12px; font-size: 12px; font-weight: 500;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-secondary);
+      cursor: pointer; transition: all .15s;
     }
-    .coin-score-wrap { text-align: right; }
-    .coin-score {
-      font-size: 32px; font-weight: 700; line-height: 1;
+    .mf-tab:hover { background: var(--bg); }
+    .mf-tab.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    .spri-table { width: 100%; border-collapse: collapse; }
+    .spri-table thead th {
+      padding: 10px 14px;
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .5px;
+      border-bottom: 2px solid var(--border);
+      text-align: left; cursor: pointer; user-select: none; white-space: nowrap;
     }
-    .coin-score-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
-    .coin-risk-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: .3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+    .spri-table thead th:hover { color: var(--text-primary); }
+    .spri-table thead th.th-sorted { color: var(--teal); }
+    .spri-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background .1s;
     }
-    .coin-risk-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: currentColor;
-    }
-    /* Dimension mini bars */
-    .dim-bars { margin-bottom: 14px; }
-    .dim-bar-row {
-      display: flex; align-items: center; gap: 6px;
-      margin-bottom: 5px;
-    }
-    .dim-bar-label {
-      font-size: 10px; font-weight: 600; color: var(--text-muted);
-      width: 22px; flex-shrink: 0;
-      text-transform: uppercase;
-    }
-    .dim-bar-track {
-      flex: 1; height: 5px; background: var(--bg);
-      border-radius: 3px; overflow: hidden;
-    }
-    .dim-bar-fill { height: 100%; border-radius: 3px; transition: width .3s; }
-    .dim-bar-val {
-      font-size: 10px; font-weight: 600; color: var(--text-secondary);
-      width: 22px; text-align: right; flex-shrink: 0;
-    }
-    /* Pill badges */
-    .pill-row { display: flex; gap: 5px; flex-wrap: wrap; }
-    .pill {
+    .spri-table tbody tr:hover { background: #F9FAFB; }
+    .spri-table tbody tr:last-child { border-bottom: none; }
+    .spri-table tbody td { padding: 12px 14px; font-size: 13px; }
+    .spri-table tbody tr.pending-row { opacity: 0.45; cursor: default; }
+    .spri-table tbody tr.pending-row:hover { background: transparent; }
+
+    .spri-symbol { font-family: 'Fira Code', monospace; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .spri-coin-name { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .spri-score-num { font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 700; }
+    .risk-level-cell { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; white-space: nowrap; }
+    .risk-level-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dim-num { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600; display: block; text-align: center; }
+    .alert-yes { font-size: 11px; font-weight: 600; color: var(--risk-high); }
+    .alert-no  { font-size: 11px; color: var(--text-muted); }
+    .table-footer-row { font-size: 11px; color: var(--text-muted); padding: 10px 14px 2px; }
+    .rapid-tag {
       display: inline-flex; align-items: center; gap: 3px;
-      padding: 2px 8px; border-radius: 12px;
-      font-size: 10px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .3px;
+      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+      background: var(--risk-mover-light); color: var(--risk-mover-dark);
+      padding: 2px 6px; border-radius: 10px;
     }
-    .pill-mover  { background: var(--risk-mover-light); color: var(--risk-mover-dark); }
-    .pill-stale  { background: var(--amber-light); color: var(--risk-elevated-dark); }
-    .pill-pending{ background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
-    .pill-review { background: var(--blue-light); color: #1E40AF; }
-
-    .view-detail-btn {
-      width: 100%;
-      margin-top: 14px;
-      padding: 7px;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 12px; font-weight: 600; color: var(--text-secondary);
-      cursor: pointer; text-align: center; transition: all .15s;
-    }
-    .view-detail-btn:hover { background: var(--teal-light); color: var(--teal-dark); border-color: var(--teal); }
-
-    /* Pending coin card */
-    .coin-card-pending {
-      background: var(--bg);
-      border: 1px dashed var(--border);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      min-height: 220px;
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-    .coin-card-pending svg { margin-bottom: 8px; opacity: .4; }
-    .coin-card-pending .pend-title { font-weight: 600; font-size: 14px; }
+    .row-chevron { color: var(--text-muted); transition: color .12s; display: flex; align-items: center; }
+    tr:hover .row-chevron { color: var(--teal); }
 
     /* ── Bottom grid: trend + alerts ── */
     .bottom-grid {
@@ -720,6 +683,391 @@
     }
     .page-breadcrumb span { cursor: pointer; }
     .page-breadcrumb span:hover { color: var(--teal); }
+
+    /* ─── Detail Page v2 ─── */
+    .detail-header-card {
+      background: var(--surface); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm); padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; margin-bottom: 8px;
+    }
+    .detail-header-left { display: flex; align-items: center; gap: 16px; }
+    .score-ring {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-family: 'Fira Code', monospace; font-size: 26px; font-weight: 700;
+      border: 3px solid; line-height: 1; flex-shrink: 0;
+    }
+    .score-ring.score-normal   { border-color: var(--risk-normal);   color: var(--risk-normal); }
+    .score-ring.score-elevated { border-color: var(--risk-elevated); color: var(--risk-elevated); }
+    .score-ring.score-high     { border-color: var(--risk-high);     color: var(--risk-high); }
+    .score-ring.score-critical { border-color: var(--risk-critical); color: var(--risk-critical); }
+    .score-ring-label { font-size: 9px; font-family: 'Inter', sans-serif; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+    .detail-coin-title { font-size: 22px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+    .detail-coin-sub   { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+    .chain-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .chain-tag {
+      padding: 2px 8px; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 4px;
+      font-size: 10px; font-weight: 600; color: var(--text-secondary); letter-spacing: .3px;
+    }
+    .detail-dim-cols { display: flex; align-items: center; gap: 0; }
+    .detail-dim-col  { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; padding: 0 14px; }
+    .detail-dim-dot  { width: 9px; height: 9px; border-radius: 50%; }
+    .detail-dim-abbr { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+    .detail-dim-val  { font-size: 22px; font-weight: 700; font-family: 'Fira Code', monospace; line-height: 1; }
+    .detail-dim-divider { width: 1px; background: var(--border); height: 44px; }
+
+    .detail-sub-banner {
+      background: #FFFBEB; border: 1px solid #FDE68A;
+      border-left: 3px solid var(--risk-elevated);
+      border-radius: var(--radius-sm); padding: 8px 14px;
+      font-size: 12px; color: #92400E;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+    }
+
+    /* Score Contribution */
+    .score-contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .contrib-formula { font-size: 10px; color: var(--text-muted); margin-bottom: 12px; font-family: 'Fira Code', monospace; }
+    .contrib-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .contrib-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .contrib-label{ font-size: 12px; font-weight: 500; color: var(--text-primary); width: 128px; flex-shrink: 0; }
+    .contrib-meta { font-size: 10px; color: var(--text-muted); width: 54px; flex-shrink: 0; }
+    .contrib-bar-wrap { flex: 1; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+    .contrib-bar-fill { height: 100%; border-radius: 3px; transition: width .4s; }
+    .contrib-val { font-size: 12px; font-weight: 700; font-family: 'Fira Code', monospace; width: 32px; text-align: right; flex-shrink: 0; }
+    .contrib-total-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 10px; border-top: 1px solid var(--border); margin-top: 6px;
+      font-size: 12px; color: var(--text-secondary);
+    }
+    .contrib-total-val { font-size: 20px; font-weight: 700; font-family: 'Fira Code', monospace; }
+
+    /* Variable Explorer */
+    .var-explorer-actions { display: flex; gap: 6px; }
+    .var-explorer-btn {
+      padding: 4px 10px; font-size: 11px; font-weight: 500;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-secondary);
+      cursor: pointer; transition: all .15s;
+    }
+    .var-explorer-btn:hover { background: var(--bg); color: var(--teal); border-color: var(--teal); }
+    .var-group { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 8px; overflow: hidden; }
+    .var-group-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; background: var(--bg);
+      cursor: pointer; user-select: none; transition: background .15s;
+    }
+    .var-group-header:hover { background: #EAECF0; }
+    .var-group-dot    { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .var-group-name   { font-size: 13px; font-weight: 600; color: var(--text-primary); flex: 1; }
+    .var-group-score  { font-size: 14px; font-weight: 700; font-family: 'Fira Code', monospace; width: 32px; text-align: right; }
+    .var-group-chevron { transition: transform .2s; color: var(--text-muted); flex-shrink:0; }
+    .var-group-chevron.rotated { transform: rotate(90deg); }
+    .var-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 16px 9px 36px;
+      border-top: 1px solid var(--border);
+      cursor: pointer; transition: background .12s;
+    }
+    .var-row:hover { background: #F9FAFB; }
+    .var-row-code  { font-size: 11px; font-family: 'Fira Code', monospace; color: var(--text-muted); width: 42px; flex-shrink: 0; }
+    .var-row-name  { font-size: 13px; color: var(--text-primary); flex: 1; }
+    .var-row-score { font-size: 13px; font-weight: 700; font-family: 'Fira Code', monospace; width: 30px; text-align: right; }
+    .var-row-delta { font-size: 11px; font-weight: 600; font-family: 'Fira Code', monospace; width: 34px; text-align: right; flex-shrink:0; }
+    .var-row-delta.up      { color: var(--risk-high); }
+    .var-row-delta.down    { color: var(--risk-normal); }
+    .var-row-delta.neutral { color: var(--text-muted); }
+    .var-detail-row {
+      padding: 10px 16px 10px 36px;
+      background: #FAFBFC; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-secondary); line-height: 1.7;
+    }
+    .var-detail-row strong { color: var(--text-primary); }
+    .var-detail-meta { display: flex; gap: 14px; margin-top: 6px; flex-wrap: wrap; }
+    .var-detail-meta-item { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+
+    /* Alert history transition */
+    .alert-transition { display: flex; align-items: center; gap: 5px; margin-top: 5px; flex-wrap: wrap; }
+    .alert-score-chip {
+      font-size: 10px; font-family: 'Fira Code', monospace;
+      background: var(--bg); color: var(--text-secondary);
+      padding: 1px 7px; border-radius: 4px; border: 1px solid var(--border);
+    }
+
+    /* ── Top Risk Drivers ── */
+    .driver-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px;
+      background: #F9FAFB; border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+    .driver-row:last-child { margin-bottom: 0; }
+    .driver-rank-badge {
+      width: 26px; height: 26px; border-radius: 50%;
+      font-size: 11px; font-weight: 700; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .driver-id-chip {
+      font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 700;
+      background: var(--teal-light); color: var(--teal-dark);
+      padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap;
+      transition: background .15s, color .15s;
+    }
+    .driver-id-chip.driver-id-clickable {
+      cursor: pointer; user-select: none;
+    }
+    .driver-id-chip.driver-id-clickable:hover {
+      background: var(--teal-dark); color: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.15);
+    }
+    .driver-info  { flex: 1; min-width: 0; }
+    .driver-name  { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .driver-desc  { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+    .driver-score-wrap { text-align: right; flex-shrink: 0; min-width: 48px; }
+    .driver-score { font-family: 'Fira Code', monospace; font-size: 22px; font-weight: 700; line-height: 1; }
+    .driver-score-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-top: 3px; }
+    .factors-chip {
+      font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
+      color: var(--text-muted); background: var(--bg);
+      padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+    }
+
+    /* Chart time-range tabs */
+    .chart-tabs { display: flex; gap: 2px; flex-wrap: wrap; }
+    .chart-tab {
+      padding: 3px 9px; font-size: 11px; font-weight: 500;
+      border: 1px solid var(--border); border-radius: 4px;
+      background: var(--surface); color: var(--text-muted);
+      cursor: pointer; transition: all .12s;
+    }
+    .chart-tab:hover  { background: var(--bg); color: var(--text-secondary); }
+    .chart-tab.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* ── View Toggle (Table / Card) ── */
+    .monitor-toolbar-right { display: flex; align-items: center; gap: 8px; }
+    .view-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .vt-btn {
+      padding: 5px 10px; font-size: 12px; font-weight: 500;
+      background: var(--surface); color: var(--text-muted);
+      border: none; cursor: pointer; transition: all .15s;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .vt-btn + .vt-btn { border-left: 1px solid var(--border); }
+    .vt-btn:hover  { background: var(--bg); color: var(--text-secondary); }
+    .vt-btn.active { background: var(--teal); color: #fff; }
+
+    /* ── Monitor Card Grid (Card View) ── */
+    .monitor-card-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px; padding: 16px;
+    }
+    .mcv-card {
+      border: 1px solid var(--border); border-radius: var(--radius-md);
+      background: var(--surface); cursor: pointer;
+      transition: box-shadow .2s, border-color .2s; overflow: hidden;
+    }
+    .mcv-card:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
+    .mcv-card-head {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 16px 12px; border-bottom: 1px solid var(--border);
+    }
+    .mcv-score-ring {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 700;
+      border: 3px solid; flex-shrink: 0;
+    }
+    .mcv-score-ring.score-normal   { border-color: var(--risk-normal);   color: var(--risk-normal-dark); background: var(--risk-normal-light); }
+    .mcv-score-ring.score-elevated { border-color: var(--risk-elevated); color: var(--risk-elevated-dark); background: var(--risk-elevated-light); }
+    .mcv-score-ring.score-high     { border-color: var(--risk-high);     color: var(--risk-high-dark);     background: var(--risk-high-light); }
+    .mcv-score-ring.score-critical { border-color: var(--risk-critical); color: var(--risk-critical-dark); background: var(--risk-critical-light); }
+    .mcv-ring-label { font-size: 9px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+    .mcv-info { flex: 1; min-width: 0; }
+    .mcv-symbol { font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 700; }
+    .mcv-name   { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .mcv-badge  { margin-top: 6px; }
+    .mcv-dims {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4px 8px; padding: 10px 16px; border-bottom: 1px solid var(--border);
+    }
+    .mcv-dim-item { display: flex; align-items: center; gap: 6px; }
+    .mcv-dim-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; width: 20px; }
+    .mcv-dim-track { flex: 1; height: 4px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+    .mcv-dim-fill  { height: 100%; border-radius: 3px; }
+    .mcv-dim-val   { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600; width: 24px; text-align: right; }
+    .mcv-driver {
+      padding: 8px 14px; font-size: 11px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .mcv-driver strong { color: var(--text-secondary); font-weight: 600; }
+    .mcv-foot {
+      padding: 9px 14px;
+      font-size: 12px; font-weight: 600; color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      text-align: center; transition: color .15s;
+    }
+    .mcv-card:hover .mcv-foot { color: var(--teal); }
+    .mcv-pending-card {
+      border: 1px dashed var(--border); border-radius: var(--radius-md);
+      background: var(--surface); min-height: 180px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; color: var(--text-muted); font-size: 12px;
+    }
+
+    /* ── Variable Definition Popover ── */
+    .var-def-popover {
+      position: fixed; z-index: 9999; max-width: 320px; min-width: 260px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius-md); box-shadow: 0 8px 24px rgba(0,0,0,.12);
+      padding: 14px 16px; display: none;
+      font-size: 12px; line-height: 1.65; color: var(--text-secondary);
+    }
+    .var-def-popover.vdp-visible { display: block; }
+    .vdp-header {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+    }
+    .vdp-id-badge {
+      font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 700;
+      background: var(--teal-light); color: var(--teal-dark);
+      padding: 2px 8px; border-radius: 4px; flex-shrink: 0;
+    }
+    .vdp-name { font-size: 13px; font-weight: 600; color: var(--text-primary); flex: 1; }
+    .vdp-close {
+      font-size: 14px; line-height: 1; cursor: pointer;
+      color: var(--text-muted); padding: 2px 4px; border-radius: 3px;
+      transition: background .12s;
+    }
+    .vdp-close:hover { background: var(--bg); color: var(--text-primary); }
+    .vdp-body strong { color: var(--text-primary); }
+    .var-row-code { cursor: pointer; }
+    .var-row-code:hover { color: var(--teal-dark) !important; text-decoration: underline; }
+
+    /* ── Data Feed Page ── */
+    .feed-status { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    .feed-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .feed-live  { color: var(--risk-normal-dark); }
+    .feed-stale { color: var(--risk-elevated-dark); }
+    .feed-error { color: var(--risk-high-dark); }
+    .feed-detail-row {
+      padding: 10px 14px 10px 40px; background: #FAFBFC;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-secondary); line-height: 1.7; display: none;
+    }
+    .feed-detail-row.open { display: block; }
+    .feed-url {
+      font-family: 'Fira Code', monospace; font-size: 11px;
+      color: var(--teal-dark); word-break: break-all;
+    }
+    .feed-sample {
+      margin-top: 6px; padding: 6px 10px;
+      background: var(--bg); border-radius: var(--radius-sm);
+      font-family: 'Fira Code', monospace; font-size: 11px;
+      color: var(--text-secondary); white-space: pre-wrap;
+    }
+    .spri-table tbody tr.feed-row { cursor: pointer; }
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — Phase 1 Mobile Adaptation
+    ═══════════════════════════════════════════ */
+
+    /* Hamburger button (hidden on desktop) */
+    .hamburger-btn {
+      display: none;
+      align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border: none; background: transparent;
+      cursor: pointer; border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      flex-shrink: 0; margin-right: 6px;
+    }
+    .hamburger-btn:hover { background: var(--bg); }
+
+    /* Sidebar backdrop overlay */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 199;
+    }
+    .sidebar-backdrop.visible { display: block; }
+
+    /* ── Tablet ≤ 1024px ── */
+    @media (max-width: 1024px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .contrib-section { flex-direction: column; }
+    }
+
+    /* ── Mobile ≤ 768px : overlay drawer ── */
+    @media (max-width: 768px) {
+      /* Show hamburger */
+      .hamburger-btn { display: flex; }
+
+      /* Sidebar becomes overlay drawer */
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform .25s cubic-bezier(.4,0,.2,1);
+        z-index: 200;
+      }
+      .sidebar.mobile-open {
+        transform: translateX(0);
+        box-shadow: 4px 0 20px rgba(0,0,0,.15);
+      }
+      /* Restore full sidebar text in open drawer */
+      .sidebar .nav-section,
+      .sidebar .nav-item-label,
+      .sidebar .nav-badge,
+      .sidebar-footer { display: flex !important; }
+
+      /* Main fills full width */
+      .main { margin-left: 0; }
+
+      /* Topbar */
+      .topbar { padding: 0 14px; gap: 4px; }
+      .topbar-sub { display: none; }
+
+      /* Content padding */
+      .content { padding: 14px; }
+
+      /* KPI grid → 2 cols */
+      .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* SPRI table: horizontal scroll */
+      .spri-table-wrap,
+      .spri-table { overflow-x: auto; display: block; }
+      .spri-table thead,
+      .spri-table tbody { display: table; width: 100%; min-width: 600px; }
+
+      /* Card view: 1 col */
+      .monitor-card-grid { grid-template-columns: 1fr !important; }
+
+      /* Detail page: stack layout */
+      .detail-header-card,
+      .contrib-section { flex-direction: column !important; }
+      .detail-grid { grid-template-columns: 1fr !important; }
+      .score-ring { margin: 0 auto; }
+
+      /* Variable groups: compact */
+      .var-group { margin-bottom: 10px; }
+
+      /* Chart tabs: wrap */
+      .chart-tab-bar { flex-wrap: wrap; }
+
+      /* Data feed table scroll */
+      #feed-table-wrap table { overflow-x: auto; display: block; }
+      #feed-table-wrap thead,
+      #feed-table-wrap tbody { display: table; width: 100%; min-width: 620px; }
+    }
+
+    /* ── Small phones ≤ 480px ── */
+    @media (max-width: 480px) {
+      .kpi-grid { grid-template-columns: 1fr !important; }
+      .content { padding: 10px; }
+      .driver-row { flex-wrap: wrap; gap: 8px; }
+      .driver-score-wrap { margin-left: auto; }
+    }
+
   </style>
 </head>
 <body>
@@ -750,22 +1098,18 @@
     <div class="nav-item active" onclick="showPage('monitor')">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       Monitor Dashboard
-      <span class="nav-badge">3</span>
+      <span class="nav-badge">2</span>
+    </div>
+    <div class="nav-item" onclick="showPage('datafeed')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      Data Feed
+      <span class="nav-badge" style="background:var(--risk-elevated)">2</span>
     </div>
     <div class="nav-section">Operations</div>
     <div class="nav-item" onclick="showPage('review')">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       Reserve Review
       <span class="nav-badge-amber">2</span>
-    </div>
-    <div class="nav-section">System</div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-      Scoring Config
-    </div>
-    <div class="nav-item">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      Alert Rules
     </div>
   </nav>
   <div class="sidebar-footer">
@@ -779,6 +1123,9 @@
   </div>
 </aside>
 
+<!-- Mobile sidebar backdrop -->
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebar()"></div>
+
 <!-- ═══════════════════════════════════════════════
      MAIN CONTENT
 ════════════════════════════════════════════════ -->
@@ -787,6 +1134,12 @@
   <!-- ── Topbar ── -->
   <header class="topbar">
     <div class="topbar-left">
+      <!-- Hamburger (mobile only) -->
+      <button class="hamburger-btn" id="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
       <div class="topbar-title" id="topbar-title">Monitor Dashboard</div>
       <div class="topbar-sub" id="topbar-sub">Stablecoin Peg Risk Index</div>
     </div>
@@ -832,21 +1185,21 @@
         <div class="kpi-card">
           <div>
             <div class="kpi-label">Active Alerts</div>
-            <div class="kpi-value score-high">3</div>
-            <div class="kpi-sub">2 High Risk · 1 Elevated</div>
+            <div class="kpi-value score-elevated">2</div>
+            <div class="kpi-sub">2 Elevated · USDT · USDC</div>
           </div>
-          <div class="kpi-icon" style="background:var(--risk-high-light)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div class="kpi-icon" style="background:var(--risk-elevated-light)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
         </div>
         <div class="kpi-card">
           <div>
             <div class="kpi-label">Rapid Movers</div>
-            <div class="kpi-value" style="color:var(--purple)">1</div>
-            <div class="kpi-sub">USDT · MC-1 +28pts</div>
+            <div class="kpi-value" style="color:var(--text-muted)">0</div>
+            <div class="kpi-sub">No rapid movers detected</div>
           </div>
-          <div class="kpi-icon" style="background:var(--risk-mover-light)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div class="kpi-icon" style="background:var(--bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
           </div>
         </div>
         <div class="kpi-card">
@@ -861,159 +1214,38 @@
         </div>
       </div>
 
-      <!-- Stablecoin Cards Grid -->
-      <div class="section-header">
-        <div class="section-title">Stablecoin Risk Overview</div>
-        <div class="tabs">
-          <div class="tab active">All</div>
-          <div class="tab">Alerts</div>
-          <div class="tab">Rapid Movers</div>
+      <!-- Monitor Toolbar: legend + filter tabs -->
+      <div class="monitor-toolbar">
+        <div class="risk-legend-inline">
+          <div class="risk-legend-item"><div class="risk-legend-dot" style="background:var(--risk-normal)"></div>0–25 Normal</div>
+          <div class="risk-legend-item"><div class="risk-legend-dot" style="background:var(--risk-elevated)"></div>26–50 Elevated</div>
+          <div class="risk-legend-item"><div class="risk-legend-dot" style="background:var(--risk-high)"></div>51–75 High Risk</div>
+          <div class="risk-legend-item"><div class="risk-legend-dot" style="background:var(--risk-critical)"></div>76–100 Critical</div>
+        </div>
+        <div class="monitor-filter-tabs">
+          <div class="mf-tab active" onclick="setMonitorFilter('all',this)">All</div>
+          <div class="mf-tab" onclick="setMonitorFilter('Normal',this)">Normal</div>
+          <div class="mf-tab" onclick="setMonitorFilter('Elevated',this)">Elevated</div>
+          <div class="mf-tab" onclick="setMonitorFilter('High Risk',this)">High Risk</div>
+          <div class="mf-tab" onclick="setMonitorFilter('Critical',this)">Critical</div>
+          <div class="mf-tab" onclick="setMonitorFilter('active',this)">Active Data</div>
+        </div>
+        <div class="monitor-toolbar-right">
+          <div class="view-toggle">
+            <button class="vt-btn active" id="vt-table" onclick="setMonitorView('table',this)" title="List View">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              List
+            </button>
+            <button class="vt-btn" id="vt-card" onclick="setMonitorView('card',this)" title="Card View">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Cards
+            </button>
+          </div>
         </div>
       </div>
-      <div class="coin-grid mb-16" style="margin-bottom:20px">
-
-        <!-- USDT — High Risk, Rapid Mover -->
-        <div class="coin-card rapid-mover-card" onclick="showPage('detail','USDT')">
-          <div class="coin-card-top">
-            <div>
-              <div class="coin-symbol">USDT</div>
-              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Tether USD</div>
-            </div>
-            <div class="coin-score-wrap">
-              <div class="coin-score score-high">68</div>
-              <div class="coin-score-label">Score</div>
-            </div>
-          </div>
-          <div class="coin-risk-badge" style="background:var(--risk-high-light);color:var(--risk-high-dark)">
-            <span class="coin-risk-dot" style="background:var(--risk-high)"></span>
-            High Risk
-          </div>
-          <div class="dim-bars">
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">RQ</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-elevated" style="width:55%"></div></div>
-              <span class="dim-bar-val">55</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">MC</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-high" style="width:72%"></div></div>
-              <span class="dim-bar-val">72</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">OC</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-high" style="width:58%"></div></div>
-              <span class="dim-bar-val">58</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">SE</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-high" style="width:62%"></div></div>
-              <span class="dim-bar-val">62</span>
-            </div>
-          </div>
-          <div class="pill-row">
-            <span class="pill pill-mover">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
-              Rapid Mover
-            </span>
-          </div>
-          <div class="view-detail-btn">View Detail →</div>
-        </div>
-
-        <!-- USDC — Elevated -->
-        <div class="coin-card" onclick="showPage('detail','USDC')">
-          <div class="coin-card-top">
-            <div>
-              <div class="coin-symbol">USDC</div>
-              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">USD Coin</div>
-            </div>
-            <div class="coin-score-wrap">
-              <div class="coin-score score-elevated">41</div>
-              <div class="coin-score-label">Score</div>
-            </div>
-          </div>
-          <div class="coin-risk-badge" style="background:var(--risk-elevated-light);color:var(--risk-elevated-dark)">
-            <span class="coin-risk-dot" style="background:var(--risk-elevated)"></span>
-            Elevated
-          </div>
-          <div class="dim-bars">
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">RQ</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-elevated" style="width:35%"></div></div>
-              <span class="dim-bar-val">35</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">MC</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-elevated" style="width:45%"></div></div>
-              <span class="dim-bar-val">45</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">OC</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-normal" style="width:38%"></div></div>
-              <span class="dim-bar-val">38</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">SE</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-elevated" style="width:42%"></div></div>
-              <span class="dim-bar-val">42</span>
-            </div>
-          </div>
-          <div class="pill-row">
-            <span class="pill pill-review">Pending Review</span>
-          </div>
-          <div class="view-detail-btn">View Detail →</div>
-        </div>
-
-        <!-- PYUSD — Normal -->
-        <div class="coin-card" onclick="showPage('detail','PYUSD')">
-          <div class="coin-card-top">
-            <div>
-              <div class="coin-symbol">PYUSD</div>
-              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">PayPal USD</div>
-            </div>
-            <div class="coin-score-wrap">
-              <div class="coin-score score-normal">24</div>
-              <div class="coin-score-label">Score</div>
-            </div>
-          </div>
-          <div class="coin-risk-badge" style="background:var(--risk-normal-light);color:var(--risk-normal-dark)">
-            <span class="coin-risk-dot" style="background:var(--risk-normal)"></span>
-            Normal
-          </div>
-          <div class="dim-bars">
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">RQ</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-normal" style="width:20%"></div></div>
-              <span class="dim-bar-val">20</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">MC</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-normal" style="width:25%"></div></div>
-              <span class="dim-bar-val">25</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">OC</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-normal" style="width:22%"></div></div>
-              <span class="dim-bar-val">22</span>
-            </div>
-            <div class="dim-bar-row">
-              <span class="dim-bar-label">SE</span>
-              <div class="dim-bar-track"><div class="dim-bar-fill bg-normal" style="width:28%"></div></div>
-              <span class="dim-bar-val">28</span>
-            </div>
-          </div>
-          <div class="pill-row"></div>
-          <div class="view-detail-btn">View Detail →</div>
-        </div>
-
-        <!-- USDe — Pending -->
-        <div class="coin-card coin-card-pending" style="background:var(--surface)">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <div class="pend-title">USDe</div>
-          <div style="font-size:11px;margin-top:4px;color:var(--text-muted)">Awaiting Data Initialization</div>
-          <div style="margin-top:12px">
-            <span class="pill pill-pending">Pending</span>
-          </div>
-        </div>
+      <!-- SPRI Table -->
+      <div class="card" style="margin-bottom:20px">
+        <div id="spri-table-wrap"></div>
       </div>
 
       <!-- Bottom grid: trend chart + alerts -->
@@ -1320,8 +1552,43 @@
       </div>
     </div>
 
+    <!-- ════════════════════════════════════════
+         PAGE 4: DATA FEED MONITOR
+    ════════════════════════════════════════ -->
+    <div class="page" id="page-datafeed">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Data Feed Monitor</div>
+          <div class="page-sub">Real-time data source health · Last refreshed <span style="font-weight:600;color:var(--text-primary)">12:05 UTC</span></div>
+        </div>
+        <div class="flex-center gap-8">
+          <button class="btn btn-secondary btn-sm">Refresh All</button>
+        </div>
+      </div>
+      <!-- KPI Row -->
+      <div class="kpi-grid" id="feed-kpi-row"></div>
+      <!-- Feed Table -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            Data Sources
+          </div>
+          <div class="tabs">
+            <div class="tab active" onclick="filterFeedTable('all',this)">All</div>
+            <div class="tab" onclick="filterFeedTable('Live',this)">Live</div>
+            <div class="tab" onclick="filterFeedTable('Stale',this)">Stale</div>
+            <div class="tab" onclick="filterFeedTable('Error',this)">Error</div>
+          </div>
+        </div>
+        <div id="feed-table-wrap"></div>
+      </div>
+    </div>
+
   </div>
 </div>
+
+<!-- (page-datafeed moved inside main layout above) -->
 
 <!-- Approval confirmation toast (hidden by default) -->
 <div id="toast" style="
@@ -1342,54 +1609,69 @@
   const COINS = {
     USDT: {
       symbol: 'USDT', name: 'Tether USD',
-      score: 68, riskLabel: 'High Risk',
-      riskScoreClass: 'score-high', riskBadgeClass: 'badge-orange',
-      riskColor: 'var(--risk-high)', riskBgLight: 'var(--risk-high-light)', riskDark: 'var(--risk-high-dark)',
-      currentThreshold: 'High: 51-75',
-      isRapidMover: true, rapidMoverVar: 'MC-1', rapidMoverDelta: '+28',
+      score: 38, riskLabel: 'Elevated',
+      riskScoreClass: 'score-elevated', riskBadgeClass: 'badge-amber',
+      riskColor: 'var(--risk-elevated)', riskBgLight: 'var(--risk-elevated-light)', riskDark: 'var(--risk-elevated-dark)',
+      currentThreshold: 'Elevated: 26-50',
+      isRapidMover: false,
       freshness: '3m', updated: '12:05 UTC',
-      reviewStatus: 'Approved', reviewBadge: 'badge-green',
+      price: '$1.000', mcap: '$113.8B',
+      chains: ['Ethereum', 'Tron'],
+      alertBanner: 'RQ sub-score elevated — attestation 13 days overdue',
+      weightNote: '9 variables · each weighted at 11.1%',
       reviewSource: 'Tether Q1 2026 Attestation Report · Apr 15, 2026',
       reviewedBy: 'Karen Walsh · No modifications', reviewDate: 'Apr 15, 2026 · 14:30 UTC',
-      dims: { RQ:{score:55,cls:'elevated'}, MC:{score:72,cls:'high'}, OC:{score:58,cls:'high'}, SE:{score:62,cls:'high'} },
-      trendData:   [32, 38, 42, 45, 52, 58, 68],
-      trendMCData: [28, 38, 44, 48, 60, 66, 72],
-      trendColor: '#F97316', trendBg: 'rgba(249,115,22,0.1)',
+      dims: { RQ:{score:37,cls:'elevated'}, MC:{score:31,cls:'elevated'}, OC:{score:20,cls:'normal'}, SE:{score:58,cls:'high'} },
+      trendData:   [35, 38, 40, 37, 38, 39, 38],
+      trendMCData: [28, 29, 30, 31, 31, 30, 31],
+      trendColor: '#F59E0B', trendBg: 'rgba(245,158,11,0.1)',
+      dimContribs: {
+        RQ: { contrib: 12.3, varCount: 3 },
+        MC: { contrib: 10.2, varCount: 1 },
+        OC: { contrib: 3.2,  varCount: 1 },
+        SE: { contrib: 12.8, varCount: 3 },
+      },
+      dimTrendData: {
+        RQ: [40, 38, 36, 35, 36, 37, 37],
+        MC: [28, 29, 30, 31, 31, 30, 31],
+        OC: [22, 21, 20, 19, 20, 20, 20],
+        SE: [52, 54, 56, 57, 57, 58, 58],
+      },
       drivers: [
-        { rank:'#1', rankColor:'var(--risk-high)', id:'MC-1', name:'Price Peg Deviation', desc:'50bp deviation from $1.00 · currently $0.9950', score:78, scoreClass:'score-high' },
-        { rank:'#2', rankColor:'var(--risk-high)', id:'MC-8', name:'Volume Anomaly', desc:'2.0σ vs 30-day avg · abnormally high volume', score:70, scoreClass:'score-high' },
-        { rank:'#3', rankColor:'var(--risk-elevated)', id:'RQ-3', name:'Reserve Coverage Ratio', desc:'Reserve/circulation 0.96× · below 1.0× threshold', score:55, scoreClass:'score-elevated' },
+        { rank:'#1', rankColor:'var(--risk-high)', id:'RQ-4', name:'Attestation timeliness', desc:'13 days overdue · attestation deadline Apr 20', score:82, scoreClass:'score-high' },
+        { rank:'#2', rankColor:'var(--risk-high)', id:'SE-4', name:'FRED macro indicators', desc:'Fed rate 5.25% · elevated macro risk environment', score:81, scoreClass:'score-high' },
+        { rank:'#3', rankColor:'var(--risk-high)', id:'RQ-3', name:'Overcollateralisation ratio', desc:'Reserve ratio 0.92× · below 1.0× threshold', score:59, scoreClass:'score-high' },
       ],
       variables: [
-        { id:'MC-1', name:'Price Peg Deviation', dim:'MC', dimCls:'badge-orange', raw:'50 bp', score:78, scoreCls:'var(--risk-high)', updated:'12:05', statusLbl:'High', statusCls:'badge-orange',
-          detail:'<strong>Definition:</strong> Price deviation from $1.00 peg in basis points.<br><strong>Rule (MC-1):</strong> 0bp→0; 10bp→25; 20bp→50; 50bp→75; 100bp→100.<br><strong>Current raw:</strong> $0.9950 (50bp below peg) → <strong>Score: 78</strong><br><strong>Source:</strong> CoinGecko price feed · 12:05 UTC' },
-        { id:'MC-8', name:'Volume Anomaly', dim:'MC', dimCls:'badge-orange', raw:'2.0σ', score:70, scoreCls:'var(--risk-high)', updated:'12:00', statusLbl:'High', statusCls:'badge-orange',
-          detail:'<strong>Definition:</strong> Volume deviation from 30-day avg in standard deviations.<br><strong>Rule (MC-8):</strong> 0σ→0; 0.5σ→25; 1.0σ→50; 1.5σ→75; 2.0+σ→100. Requires 30-day backfill.<br><strong>Current raw:</strong> 2.0σ above 30-day avg → <strong>Score: 70</strong><br><strong>Source:</strong> On-chain volume aggregator · 12:00 UTC' },
-        { id:'RQ-3', name:'Reserve Coverage Ratio', dim:'RQ', dimCls:'badge-amber', raw:'0.96×', score:55, scoreCls:'var(--risk-elevated)', updated:'11:45', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> Reserve assets / circulating supply.<br><strong>Rule (RQ-3):</strong> ≥1.1×→0; 1.0×→25; 0.95×→50; 0.90×→75; ≤0.85×→100.<br><strong>Current raw:</strong> $68.2B/$71.0B=0.96× → <strong>Score: 55</strong><br><strong>Source:</strong> Tether attestation (AI extracted, human reviewed)' },
-        { id:'OC-7', name:'Supply Change', dim:'OC', dimCls:'badge-teal', raw:'-3.2%', score:58, scoreCls:'var(--risk-high)', updated:'12:00', statusLbl:'High', statusCls:'badge-orange',
-          detail:'<strong>Definition:</strong> TotalSupply single-day change (supply decrease only).<br><strong>Rule (OC-7):</strong> 0%→0; -1%→25; -2%→50; -3%→75; -4%→100.<br><strong>Current raw:</strong> Supply -3.2% ($71.0B→$68.8B) → <strong>Score: 58</strong><br><strong>Source:</strong> Ethereum on-chain data' },
-        { id:'MC-5', name:'TVL Change (7D)', dim:'MC', dimCls:'badge-orange', raw:'-8.5%', score:45, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> TVL change vs 7-day average. Requires ≥7 days backfill.<br><strong>Rule (MC-5):</strong> 0%→0; -5%→25; -10%→50; -15%→75; -20%→100.<br><strong>Current raw:</strong> TVL -8.5% vs 7-day avg → <strong>Score: 45</strong><br><strong>Source:</strong> DeFiLlama TVL API' },
-        { id:'RQ-1', name:'Safe Reserve Asset Ratio', dim:'RQ', dimCls:'badge-amber', raw:'78%', score:40, scoreCls:'var(--risk-elevated)', updated:'11:45', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> Proportion of reserves in safe assets (T-bills, cash, equiv).<br><strong>Rule (RQ-1):</strong> ≥95%→0; 85%→25; 75%→50; 65%→75; ≤55%→100.<br><strong>Current raw:</strong> 78% safe ratio → <strong>Score: 40</strong><br><strong>Source:</strong> Tether Q1 2026 attestation (AI extracted, human reviewed)' },
-        { id:'RQ-4', name:'Attestation Overdue', dim:'RQ', dimCls:'badge-amber', raw:'5 days', score:20, scoreCls:'var(--risk-normal)', updated:'system', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Days since last attestation was due.<br><strong>Rule (RQ-4):</strong> 0d→0; 30d→25; 60d→50; 90d→75; ≥120d→100.<br><strong>Current raw:</strong> 5 days overdue → <strong>Score: 20</strong><br><strong>Source:</strong> System date vs attestation schedule' },
-        { id:'SE-2', name:'Negative Sentiment', dim:'SE', dimCls:'badge-purple', raw:'28%', score:45, scoreCls:'var(--risk-elevated)', updated:'11:30', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> Community negative sentiment proportion about peg stability.<br><strong>Rule (SE-2):</strong> 0%→0; 10%→25; 20%→50; 30%→75; ≥40%→100.<br><strong>Current raw:</strong> 28% negative → <strong>Score: 45</strong><br><strong>Source:</strong> Social sentiment aggregator' },
-        { id:'SE-4', name:'FRED Rate Threshold', dim:'SE', dimCls:'badge-purple', raw:'5.25%', score:60, scoreCls:'var(--risk-high)', updated:'daily', statusLbl:'High', statusCls:'badge-orange',
-          detail:'<strong>Definition:</strong> Federal Reserve rate vs stablecoin stress threshold.<br><strong>Rule (SE-4):</strong> ≤2%→0; 3%→25; 4%→50; 5%→75; ≥6%→100.<br><strong>Current raw:</strong> Fed rate 5.25% → <strong>Score: 60</strong><br><strong>Source:</strong> FRED API' },
+        { id:'RQ-4', name:'Attestation timeliness', dim:'RQ', dimCls:'badge-amber', raw:'13d overdue', score:82, scoreCls:'var(--risk-high)', updated:'system', statusLbl:'High', statusCls:'badge-orange', delta:9,
+          detail:'<strong>Definition:</strong> Days since attestation report was due.<br><strong>Current:</strong> 13 days overdue — attestation deadline was Apr 20, 2026.<br><strong>Source:</strong> issuer website · <strong>Updated:</strong> 14' },
+        { id:'RQ-3', name:'Overcollateralisation ratio', dim:'RQ', dimCls:'badge-amber', raw:'0.92×', score:59, scoreCls:'var(--risk-high)', updated:'11:45', statusLbl:'Elevated', statusCls:'badge-amber', delta:2,
+          detail:'<strong>Definition:</strong> Ratio of reserve to circulating supply. ≥1.05× = 0, 1.02× = 15, 1.00× = 35, 0.98× = 55, 0.96× = 72, ≤0.92× = 100.<br><strong>Current:</strong> 0.92× — below 1.0× threshold → <strong>Score: 59</strong><br><strong>Source:</strong> Tether Q1 2026 attestation (AI extracted, human reviewed)' },
+        { id:'RQ-1', name:'Reserve composition ratio', dim:'RQ', dimCls:'badge-amber', raw:'62%', score:39, scoreCls:'var(--risk-elevated)', updated:'11:45', statusLbl:'Elevated', statusCls:'badge-amber', delta:7,
+          detail:'<strong>Definition:</strong> % of reserves held in T-bills, cash, repos, etc. 90%+→0, 80%→10, 70%→25, 55%→50, 40%→75, &lt;25%→100.<br><strong>Current:</strong> 62% in qualifying liquid assets → <strong>Score: 39</strong><br><strong>Source:</strong> Tether Q1 2026 attestation' },
+        { id:'MC-8', name:'Volume anomaly', dim:'MC', dimCls:'badge-orange', raw:'1.2σ', score:55, scoreCls:'var(--risk-high)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber', delta:null,
+          detail:'<strong>Definition:</strong> Std devs from 30-day moving average volume. 0σ→0, 1σ→25, 2σ→50, 3σ→75, 4σ+→100.<br><strong>Current:</strong> 1.2σ above 30-day avg → <strong>Score: 55</strong><br><strong>Source:</strong> On-chain volume aggregator · 12:00 UTC' },
+        { id:'MC-5', name:'DEX pool TVL', dim:'MC', dimCls:'badge-orange', raw:'-7.2%', score:44, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber', delta:null,
+          detail:'<strong>Definition:</strong> % decline from 7-day moving average of DeFi liquidity pool TVL. 0%→0, 2%→15, 5%→30, 15%→58, 30%→85, 45%+→100.<br><strong>Current:</strong> -7.2% TVL change → <strong>Score: 44</strong><br><strong>Source:</strong> DeFiLlama TVL API · 12:00 UTC' },
+        { id:'MC-1', name:'Price deviation', dim:'MC', dimCls:'badge-orange', raw:'5 bp', score:9, scoreCls:'var(--risk-normal)', updated:'12:05', statusLbl:'Normal', statusCls:'badge-green', delta:1,
+          detail:'<strong>Definition:</strong> Basis points deviation from $1.00 peg. 0bp→0, 10bp→25, 50bp→50, 200bp→75, 500bp+→100.<br><strong>Current:</strong> $0.9995 (5bp below peg) → <strong>Score: 9</strong><br><strong>Source:</strong> CoinGecko price feed · 12:05 UTC' },
+        { id:'OC-7', name:'Total supply trend', dim:'OC', dimCls:'badge-teal', raw:'-1.8%', score:34, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber', delta:2,
+          detail:'<strong>Definition:</strong> % change in totalSupply (daily). 0% or growing→0, -0.1%→15, -0.25%→30, -0.5%→50, -1%→70, -2%→85, -3%+→100.<br><strong>Current:</strong> Supply -1.8% ($113.8B → $111.7B) → <strong>Score: 34</strong><br><strong>Source:</strong> Ethereum on-chain data · 12:00 UTC' },
+        { id:'SE-4', name:'FRED macro indicators', dim:'SE', dimCls:'badge-purple', raw:'5.25%', score:81, scoreCls:'var(--risk-high)', updated:'daily', statusLbl:'High', statusCls:'badge-orange', delta:null,
+          detail:'<strong>Definition:</strong> Fed Funds Effective Rate as macro stress indicator. 5.0%+→10, 4.0–5.0%→25, 2.5–4.0%→45, 1.0–2.5%→65, &lt;1.0%→low risk.<br><strong>Current:</strong> Fed rate 5.25% → <strong>Score: 81</strong><br><strong>Source:</strong> FRED API · daily update' },
+        { id:'SE-2', name:'Community Sentiment Score', dim:'SE', dimCls:'badge-purple', raw:'28%', score:53, scoreCls:'var(--risk-high)', updated:'11:30', statusLbl:'Elevated', statusCls:'badge-amber', delta:4,
+          detail:'<strong>Definition:</strong> Negative sentiment % from community votes. 0–10%→0, 10–25%→20, 25–40%→40, 40–60%→60, 60–80%→80, 80%+→95.<br><strong>Current:</strong> 28% negative → <strong>Score: 53</strong><br><strong>Source:</strong> Social sentiment aggregator · 11:30 UTC' },
       ],
       alerts: [
-        { color:'var(--risk-mover)', title:'Rapid Mover — MC-1', desc:'Score spiked +28 pts · price deviation 50bp', time:'12:05', hasLine:true },
-        { color:'var(--risk-high)', title:'Level Change: Elevated → High Risk', desc:'Composite score crossed 51 threshold', time:'12:03', hasLine:true },
-        { color:'var(--risk-elevated)', title:'Level Change: Normal → Elevated', desc:'MC-8 volume anomaly trigger exceeded baseline', time:'Apr 22 · 18:30', hasLine:true },
-        { color:'var(--risk-normal)', title:'Score Recovered → Normal', desc:'All variables within safe range', time:'Apr 20 · 09:00', hasLine:false },
+        { color:'var(--risk-elevated)', title:'RQ sub-score elevated', desc:'Attestation timeliness overdue — 13 days past deadline', time:'03 Apr 09:13', hasLine:true, fromLevel:'Normal', toLevel:'Elevated', scoreAtEvent:39, affectedDim:'RQ' },
+        { color:'var(--risk-normal)', title:'MC sub-score normalised', desc:'DEX pool depth recovered — liquidity stabilised', time:'02 Apr 18:39', hasLine:true, fromLevel:'Elevated', toLevel:'Normal', scoreAtEvent:34, affectedDim:'MC' },
+        { color:'var(--risk-elevated)', title:'SE sub-score elevated', desc:'Negative community sentiment cluster detected', time:'01 Apr 14:05', hasLine:true, fromLevel:'Normal', toLevel:'Elevated', scoreAtEvent:36, affectedDim:'SE' },
+        { color:'var(--risk-normal)', title:'All dimensions within Normal range', desc:'No anomalies detected in scoring cycle', time:'26 Mar 11:30', hasLine:false, fromLevel:'Elevated', toLevel:'Normal', scoreAtEvent:33, affectedDim:'' },
       ],
       reviewFields: [
-        { id:'RQ-1', label:'Safe Reserve Ratio', val:'78%', by:'Reviewed by K.Walsh' },
-        { id:'RQ-3', label:'Reserve/Supply Ratio', val:'0.96×', by:'Reviewed by K.Walsh' },
-        { id:'RQ-4', label:'Days Since Attestation', val:'5 days', by:'Auto-calculated' },
+        { id:'RQ-4', label:'Attestation timeliness', val:'13 days overdue', by:'Auto-calculated' },
+        { id:'RQ-3', label:'Overcollateralisation ratio', val:'0.92×', by:'Reviewed by K.Walsh' },
+        { id:'RQ-1', label:'Reserve composition ratio', val:'62%', by:'Reviewed by K.Walsh' },
       ],
     },
 
@@ -1401,6 +1683,10 @@
       currentThreshold: 'Elevated: 26-50',
       isRapidMover: false,
       freshness: '5m', updated: '12:00 UTC',
+      price: '$1.000', mcap: '$42.8B',
+      chains: ['Ethereum', 'Algorand'],
+      alertBanner: null,
+      weightNote: '9 variables · each weighted at 11.1%',
       reviewStatus: 'Pending', reviewBadge: 'badge-amber',
       reviewSource: 'Circle Q1 2026 Attestation · Submitted Apr 23, 2026',
       reviewedBy: 'Awaiting reviewer decision', reviewDate: 'Submitted Apr 23 · 09:15 UTC',
@@ -1408,40 +1694,52 @@
       trendData:   [28, 30, 35, 38, 40, 39, 41],
       trendMCData: [22, 28, 32, 36, 42, 40, 45],
       trendColor: '#F59E0B', trendBg: 'rgba(245,158,11,0.1)',
+      dimContribs: {
+        RQ: { contrib: 11.7, varCount: 0 },
+        MC: { contrib: 15.0, varCount: 2 },
+        OC: { contrib: 4.2,  varCount: 0 },
+        SE: { contrib: 9.3,  varCount: 1 },
+      },
+      dimTrendData: {
+        RQ: [38, 36, 35, 34, 35, 35, 35],
+        MC: [38, 40, 42, 44, 45, 44, 45],
+        OC: [35, 36, 37, 38, 38, 38, 38],
+        SE: [40, 40, 41, 42, 42, 42, 42],
+      },
       drivers: [
-        { rank:'#1', rankColor:'var(--risk-high)', id:'SE-4', name:'FRED Rate Threshold', desc:'Fed rate 5.25% · elevated macro risk environment', score:60, scoreClass:'score-high' },
-        { rank:'#2', rankColor:'var(--risk-elevated)', id:'MC-5', name:'TVL Change (7D)', desc:'-12% TVL vs 7-day avg · moderate outflow signal', score:55, scoreClass:'score-elevated' },
-        { rank:'#3', rankColor:'var(--risk-elevated)', id:'SE-2', name:'Negative Sentiment', desc:'22% negative sentiment · mild community concern', score:40, scoreClass:'score-elevated' },
+        { rank:'#1', rankColor:'var(--risk-high)', id:'SE-4', name:'FRED macro indicators', desc:'Fed rate 5.25% · elevated macro risk environment', score:60, scoreClass:'score-high' },
+        { rank:'#2', rankColor:'var(--risk-elevated)', id:'MC-5', name:'DEX pool TVL', desc:'-12% TVL vs 7-day avg · moderate outflow signal', score:55, scoreClass:'score-elevated' },
+        { rank:'#3', rankColor:'var(--risk-elevated)', id:'SE-2', name:'Community Sentiment Score', desc:'22% negative sentiment · mild community concern', score:40, scoreClass:'score-elevated' },
       ],
       variables: [
-        { id:'MC-1', name:'Price Peg Deviation', dim:'MC', dimCls:'badge-orange', raw:'8 bp', score:20, scoreCls:'var(--risk-normal)', updated:'12:00', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Price deviation from $1.00 peg in basis points.<br><strong>Current raw:</strong> $0.9992 (8bp below peg) → <strong>Score: 20</strong><br><strong>Source:</strong> CoinGecko price feed · 12:00 UTC' },
-        { id:'MC-8', name:'Volume Anomaly', dim:'MC', dimCls:'badge-orange', raw:'0.8σ', score:35, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> Volume deviation from 30-day avg in standard deviations.<br><strong>Current raw:</strong> 0.8σ above 30-day avg → <strong>Score: 35</strong><br><strong>Source:</strong> On-chain volume aggregator · 12:00 UTC' },
-        { id:'RQ-3', name:'Reserve Coverage Ratio', dim:'RQ', dimCls:'badge-amber', raw:'1.02×', score:20, scoreCls:'var(--risk-normal)', updated:'pending', statusLbl:'Pending', statusCls:'badge-gray',
-          detail:'<strong>Definition:</strong> Reserve assets / circulating supply.<br><strong>Current raw:</strong> AI-extracted 1.02× pending human review → <strong>Preliminary Score: 20</strong><br><strong>Note:</strong> Will be finalised after Reserve Review approval' },
-        { id:'OC-7', name:'Supply Change', dim:'OC', dimCls:'badge-teal', raw:'-0.8%', score:20, scoreCls:'var(--risk-normal)', updated:'12:00', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> TotalSupply single-day change (supply decrease only).<br><strong>Current raw:</strong> Supply -0.8% → <strong>Score: 20</strong><br><strong>Source:</strong> Ethereum on-chain data' },
-        { id:'MC-5', name:'TVL Change (7D)', dim:'MC', dimCls:'badge-orange', raw:'-12%', score:55, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> TVL change vs 7-day average.<br><strong>Current raw:</strong> TVL -12% vs 7-day avg → <strong>Score: 55</strong><br><strong>Source:</strong> DeFiLlama TVL API' },
-        { id:'RQ-1', name:'Safe Reserve Asset Ratio', dim:'RQ', dimCls:'badge-amber', raw:'91%', score:15, scoreCls:'var(--risk-normal)', updated:'pending', statusLbl:'Pending', statusCls:'badge-gray',
-          detail:'<strong>Definition:</strong> Proportion of reserves in safe assets.<br><strong>Current raw:</strong> AI-extracted 91% pending human review → <strong>Preliminary Score: 15</strong><br><strong>Source:</strong> Circle Q1 2026 attestation (pending review)' },
-        { id:'RQ-4', name:'Attestation Overdue', dim:'RQ', dimCls:'badge-amber', raw:'2 days', score:10, scoreCls:'var(--risk-normal)', updated:'system', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Days since last attestation was due.<br><strong>Current raw:</strong> 2 days overdue → <strong>Score: 10</strong><br><strong>Source:</strong> System date vs attestation schedule' },
-        { id:'SE-2', name:'Negative Sentiment', dim:'SE', dimCls:'badge-purple', raw:'22%', score:40, scoreCls:'var(--risk-elevated)', updated:'11:30', statusLbl:'Elevated', statusCls:'badge-amber',
-          detail:'<strong>Definition:</strong> Community negative sentiment proportion.<br><strong>Current raw:</strong> 22% negative → <strong>Score: 40</strong><br><strong>Source:</strong> Social sentiment aggregator' },
-        { id:'SE-4', name:'FRED Rate Threshold', dim:'SE', dimCls:'badge-purple', raw:'5.25%', score:60, scoreCls:'var(--risk-high)', updated:'daily', statusLbl:'High', statusCls:'badge-orange',
-          detail:'<strong>Definition:</strong> Federal Reserve rate vs stablecoin stress threshold.<br><strong>Current raw:</strong> Fed rate 5.25% → <strong>Score: 60</strong><br><strong>Source:</strong> FRED API' },
+        { id:'RQ-1', name:'Reserve composition ratio', dim:'RQ', dimCls:'badge-amber', raw:'91%', score:15, scoreCls:'var(--risk-normal)', updated:'pending', statusLbl:'Pending', statusCls:'badge-gray', delta:0,
+          detail:'<strong>Definition:</strong> % of reserves held in T-bills, cash, repos, etc. 90%+→0, 80%→10, 70%→25, 55%→50, 40%→75, &lt;25%→100.<br><strong>Current:</strong> AI-extracted 91% pending human review → <strong>Preliminary Score: 15</strong><br><strong>Source:</strong> Circle Q1 2026 attestation (pending review)' },
+        { id:'RQ-3', name:'Overcollateralisation ratio', dim:'RQ', dimCls:'badge-amber', raw:'1.02×', score:20, scoreCls:'var(--risk-normal)', updated:'pending', statusLbl:'Pending', statusCls:'badge-gray', delta:0,
+          detail:'<strong>Definition:</strong> Ratio of reserve to circulating supply. ≥1.05×→0, 1.02×→15, 1.00×→35, 0.98×→55, 0.96×→72, ≤0.92×→100.<br><strong>Current:</strong> AI-extracted 1.02× pending human review → <strong>Preliminary Score: 20</strong><br><strong>Source:</strong> Circle Q1 2026 attestation' },
+        { id:'RQ-4', name:'Attestation timeliness', dim:'RQ', dimCls:'badge-amber', raw:'2 days', score:10, scoreCls:'var(--risk-normal)', updated:'system', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Days since attestation report was due. On-time→0, 7d late→30, 15d→44, 30d→70, 60d+→100.<br><strong>Current:</strong> 2 days overdue → <strong>Score: 10</strong>' },
+        { id:'MC-1', name:'Price deviation', dim:'MC', dimCls:'badge-orange', raw:'8 bp', score:20, scoreCls:'var(--risk-normal)', updated:'12:00', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Basis points deviation from $1.00 peg. 0bp→0, 10bp→25, 50bp→50, 200bp→75, 500bp+→100.<br><strong>Current:</strong> $0.9992 (8bp below peg) → <strong>Score: 20</strong><br><strong>Source:</strong> CoinGecko price feed · 12:00 UTC' },
+        { id:'MC-5', name:'DEX pool TVL', dim:'MC', dimCls:'badge-orange', raw:'-12%', score:55, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber', delta:3,
+          detail:'<strong>Definition:</strong> % decline from 7-day moving average of DeFi liquidity pool TVL. 0%→0, 2%→15, 5%→30, 15%→58, 30%→85, 45%+→100.<br><strong>Current:</strong> TVL -12% vs 7-day avg → <strong>Score: 55</strong><br><strong>Source:</strong> DeFiLlama TVL API' },
+        { id:'MC-8', name:'Volume anomaly', dim:'MC', dimCls:'badge-orange', raw:'0.8σ', score:35, scoreCls:'var(--risk-elevated)', updated:'12:00', statusLbl:'Elevated', statusCls:'badge-amber', delta:1,
+          detail:'<strong>Definition:</strong> Std devs from 30-day moving average volume. 0σ→0, 1σ→25, 2σ→50, 3σ→75, 4σ+→100.<br><strong>Current:</strong> 0.8σ above 30-day avg → <strong>Score: 35</strong><br><strong>Source:</strong> On-chain volume aggregator · 12:00 UTC' },
+        { id:'OC-7', name:'Total supply trend', dim:'OC', dimCls:'badge-teal', raw:'-0.8%', score:20, scoreCls:'var(--risk-normal)', updated:'12:00', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> % change in totalSupply (daily). 0% or growing→0, -0.1%→15, -0.25%→30, -0.5%→50, -1%→70, -2%→85, -3%+→100.<br><strong>Current:</strong> Supply -0.8% → <strong>Score: 20</strong><br><strong>Source:</strong> Ethereum on-chain data' },
+        { id:'SE-2', name:'Community Sentiment Score', dim:'SE', dimCls:'badge-purple', raw:'22%', score:40, scoreCls:'var(--risk-elevated)', updated:'11:30', statusLbl:'Elevated', statusCls:'badge-amber', delta:2,
+          detail:'<strong>Definition:</strong> Negative sentiment % from community votes. 0–10%→0, 10–25%→20, 25–40%→40, 40–60%→60, 60–80%→80, 80%+→95.<br><strong>Current:</strong> 22% negative → <strong>Score: 40</strong><br><strong>Source:</strong> Social sentiment aggregator' },
+        { id:'SE-4', name:'FRED macro indicators', dim:'SE', dimCls:'badge-purple', raw:'5.25%', score:60, scoreCls:'var(--risk-high)', updated:'daily', statusLbl:'High', statusCls:'badge-orange', delta:0,
+          detail:'<strong>Definition:</strong> Fed Funds Effective Rate as macro stress indicator. 5.0%+→10, 4.0–5.0%→25, 2.5–4.0%→45, 1.0–2.5%→65, &lt;1.0%→low risk.<br><strong>Current:</strong> Fed rate 5.25% → <strong>Score: 60</strong><br><strong>Source:</strong> FRED API' },
       ],
       alerts: [
-        { color:'var(--risk-elevated)', title:'Level Change: Normal → Elevated', desc:'MC-5 TVL drop exceeds 7-day avg baseline', time:'11:48', hasLine:true },
-        { color:'var(--amber)', title:'Reserve Review Required', desc:'Q1 2026 attestation pending human approval', time:'Apr 23 · 09:15', hasLine:true },
-        { color:'var(--risk-normal)', title:'Score Stable — Normal Range', desc:'No alerts for past 7 days prior to this cycle', time:'Apr 16 · 14:00', hasLine:false },
+        { color:'var(--risk-elevated)', title:'Level Change: Normal → Elevated', desc:'MC-5 TVL drop exceeds 7-day avg baseline', time:'11:48', hasLine:true, fromLevel:'Normal', toLevel:'Elevated', scoreAtEvent:41, affectedDim:'MC' },
+        { color:'var(--amber)', title:'Reserve Review Required', desc:'Q1 2026 attestation pending human approval', time:'Apr 23 · 09:15', hasLine:true, fromLevel:null, toLevel:null, scoreAtEvent:null, affectedDim:'RQ' },
+        { color:'var(--risk-normal)', title:'Score Stable — Normal Range', desc:'No alerts for past 7 days prior to this cycle', time:'Apr 16 · 14:00', hasLine:false, fromLevel:'Elevated', toLevel:'Normal', scoreAtEvent:28, affectedDim:'' },
       ],
       reviewFields: [
-        { id:'RQ-1', label:'Safe Reserve Ratio', val:'91% (AI)', by:'Pending review' },
-        { id:'RQ-3', label:'Reserve/Supply Ratio', val:'1.02× (AI)', by:'Pending review' },
-        { id:'RQ-4', label:'Days Since Attestation', val:'2 days', by:'Auto-calculated' },
+        { id:'RQ-1', label:'Reserve composition ratio', val:'91% (AI)', by:'Pending review' },
+        { id:'RQ-3', label:'Overcollateralisation ratio', val:'1.02× (AI)', by:'Pending review' },
+        { id:'RQ-4', label:'Attestation timeliness', val:'2 days', by:'Auto-calculated' },
       ],
     },
 
@@ -1453,6 +1751,10 @@
       currentThreshold: 'Normal: 0-25',
       isRapidMover: false,
       freshness: '8m', updated: '11:57 UTC',
+      price: '$1.000', mcap: '$1.2B',
+      chains: ['Ethereum'],
+      alertBanner: null,
+      weightNote: '9 variables · each weighted at 11.1%',
       reviewStatus: 'Approved', reviewBadge: 'badge-green',
       reviewSource: 'PayPal Mar 2026 Reserve Report · Approved Apr 10, 2026',
       reviewedBy: 'Alex Torres · No modifications', reviewDate: 'Approved Apr 10 · 11:20 UTC',
@@ -1460,47 +1762,64 @@
       trendData:   [18, 20, 22, 21, 23, 24, 24],
       trendMCData: [15, 18, 20, 19, 22, 24, 25],
       trendColor: '#10B981', trendBg: 'rgba(16,185,129,0.1)',
+      dimContribs: {
+        RQ: { contrib: 6.7, varCount: 0 },
+        MC: { contrib: 8.3, varCount: 0 },
+        OC: { contrib: 2.4, varCount: 0 },
+        SE: { contrib: 6.2, varCount: 0 },
+      },
+      dimTrendData: {
+        RQ: [22, 21, 20, 20, 20, 20, 20],
+        MC: [22, 23, 24, 24, 25, 25, 25],
+        OC: [23, 22, 22, 22, 22, 22, 22],
+        SE: [26, 27, 28, 28, 27, 28, 28],
+      },
       drivers: [
-        { rank:'#1', rankColor:'var(--risk-high)', id:'SE-4', name:'FRED Rate Threshold', desc:'Fed rate 5.25% · macro environment shared across all coins', score:60, scoreClass:'score-high' },
-        { rank:'#2', rankColor:'var(--risk-normal)', id:'SE-2', name:'Negative Sentiment', desc:'12% negative sentiment · within normal range', score:22, scoreClass:'score-normal' },
-        { rank:'#3', rankColor:'var(--risk-normal)', id:'MC-5', name:'TVL Change (7D)', desc:'-3% TVL vs 7-day avg · minor fluctuation', score:18, scoreClass:'score-normal' },
+        { rank:'#1', rankColor:'var(--risk-high)', id:'SE-4', name:'FRED macro indicators', desc:'Fed rate 5.25% · macro environment shared across all coins', score:60, scoreClass:'score-high' },
+        { rank:'#2', rankColor:'var(--risk-normal)', id:'SE-2', name:'Community Sentiment Score', desc:'12% negative sentiment · within normal range', score:22, scoreClass:'score-normal' },
+        { rank:'#3', rankColor:'var(--risk-normal)', id:'MC-5', name:'DEX pool TVL', desc:'-3% TVL vs 7-day avg · minor fluctuation', score:18, scoreClass:'score-normal' },
       ],
       variables: [
-        { id:'MC-1', name:'Price Peg Deviation', dim:'MC', dimCls:'badge-orange', raw:'3 bp', score:8, scoreCls:'var(--risk-normal)', updated:'11:57', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Price deviation from $1.00 peg in basis points.<br><strong>Current raw:</strong> $0.9997 (3bp below peg) → <strong>Score: 8</strong><br><strong>Source:</strong> CoinGecko price feed · 11:57 UTC' },
-        { id:'MC-8', name:'Volume Anomaly', dim:'MC', dimCls:'badge-orange', raw:'0.2σ', score:10, scoreCls:'var(--risk-normal)', updated:'11:55', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Volume deviation from 30-day avg in standard deviations.<br><strong>Current raw:</strong> 0.2σ above 30-day avg → <strong>Score: 10</strong><br><strong>Source:</strong> On-chain volume aggregator' },
-        { id:'RQ-3', name:'Reserve Coverage Ratio', dim:'RQ', dimCls:'badge-amber', raw:'1.08×', score:10, scoreCls:'var(--risk-normal)', updated:'Apr 10', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Reserve assets / circulating supply.<br><strong>Current raw:</strong> 1.08× reserve ratio → <strong>Score: 10</strong><br><strong>Source:</strong> PayPal Mar 2026 report (AI extracted, human reviewed)' },
-        { id:'OC-7', name:'Supply Change', dim:'OC', dimCls:'badge-teal', raw:'+0.5%', score:0, scoreCls:'var(--risk-normal)', updated:'11:57', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> TotalSupply single-day change (supply decrease only counts as risk).<br><strong>Current raw:</strong> Supply +0.5% (increase) → <strong>Score: 0</strong> (only decreases trigger risk)<br><strong>Source:</strong> Ethereum on-chain data' },
-        { id:'MC-5', name:'TVL Change (7D)', dim:'MC', dimCls:'badge-orange', raw:'-3%', score:18, scoreCls:'var(--risk-normal)', updated:'11:55', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> TVL change vs 7-day average.<br><strong>Current raw:</strong> TVL -3% vs 7-day avg → <strong>Score: 18</strong><br><strong>Source:</strong> DeFiLlama TVL API' },
-        { id:'RQ-1', name:'Safe Reserve Asset Ratio', dim:'RQ', dimCls:'badge-amber', raw:'95%', score:5, scoreCls:'var(--risk-normal)', updated:'Apr 10', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Proportion of reserves in safe assets.<br><strong>Current raw:</strong> 95% safe reserve ratio → <strong>Score: 5</strong><br><strong>Source:</strong> PayPal Mar 2026 report (AI extracted, human reviewed)' },
-        { id:'RQ-4', name:'Attestation Overdue', dim:'RQ', dimCls:'badge-amber', raw:'0 days', score:0, scoreCls:'var(--risk-normal)', updated:'system', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Days since last attestation was due.<br><strong>Current raw:</strong> On schedule, 0 days overdue → <strong>Score: 0</strong>' },
-        { id:'SE-2', name:'Negative Sentiment', dim:'SE', dimCls:'badge-purple', raw:'12%', score:22, scoreCls:'var(--risk-normal)', updated:'11:30', statusLbl:'Normal', statusCls:'badge-green',
-          detail:'<strong>Definition:</strong> Community negative sentiment proportion.<br><strong>Current raw:</strong> 12% negative → <strong>Score: 22</strong><br><strong>Source:</strong> Social sentiment aggregator' },
-        { id:'SE-4', name:'FRED Rate Threshold', dim:'SE', dimCls:'badge-purple', raw:'5.25%', score:60, scoreCls:'var(--risk-high)', updated:'daily', statusLbl:'High', statusCls:'badge-orange',
-          detail:'<strong>Definition:</strong> Federal Reserve rate vs stablecoin stress threshold.<br><strong>Note:</strong> SE-4 is a macro factor shared by all stablecoins, explaining why even a Normal-scored coin has one high variable.<br><strong>Current raw:</strong> Fed rate 5.25% → <strong>Score: 60</strong><br><strong>Source:</strong> FRED API' },
+        { id:'MC-1', name:'Price deviation', dim:'MC', dimCls:'badge-orange', raw:'3 bp', score:8, scoreCls:'var(--risk-normal)', updated:'11:57', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Basis points deviation from $1.00 peg. 0bp→0, 10bp→25, 50bp→50, 200bp→75, 500bp+→100.<br><strong>Current:</strong> $0.9997 (3bp below peg) → <strong>Score: 8</strong><br><strong>Source:</strong> CoinGecko price feed · 11:57 UTC' },
+        { id:'MC-8', name:'Volume anomaly', dim:'MC', dimCls:'badge-orange', raw:'0.2σ', score:10, scoreCls:'var(--risk-normal)', updated:'11:55', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Std devs from 30-day moving average volume. 0σ→0, 1σ→25, 2σ→50, 3σ→75, 4σ+→100.<br><strong>Current:</strong> 0.2σ above 30-day avg → <strong>Score: 10</strong><br><strong>Source:</strong> On-chain volume aggregator' },
+        { id:'MC-5', name:'DEX pool TVL', dim:'MC', dimCls:'badge-orange', raw:'-3%', score:18, scoreCls:'var(--risk-normal)', updated:'11:55', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> % decline from 7-day moving average of DeFi liquidity pool TVL. 0%→0, 2%→15, 5%→30, 15%→58, 30%→85, 45%+→100.<br><strong>Current:</strong> TVL -3% vs 7-day avg → <strong>Score: 18</strong><br><strong>Source:</strong> DeFiLlama TVL API' },
+        { id:'RQ-3', name:'Overcollateralisation ratio', dim:'RQ', dimCls:'badge-amber', raw:'1.08×', score:10, scoreCls:'var(--risk-normal)', updated:'Apr 10', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Ratio of reserve to circulating supply. ≥1.05×→0, 1.02×→15, 1.00×→35, 0.98×→55, 0.96×→72, ≤0.92×→100.<br><strong>Current:</strong> 1.08× reserve ratio → <strong>Score: 10</strong><br><strong>Source:</strong> PayPal Mar 2026 report (AI extracted, human reviewed)' },
+        { id:'RQ-1', name:'Reserve composition ratio', dim:'RQ', dimCls:'badge-amber', raw:'95%', score:5, scoreCls:'var(--risk-normal)', updated:'Apr 10', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> % of reserves held in T-bills, cash, repos, etc. 90%+→0, 80%→10, 70%→25, 55%→50, 40%→75, &lt;25%→100.<br><strong>Current:</strong> 95% safe reserve ratio → <strong>Score: 5</strong><br><strong>Source:</strong> PayPal Mar 2026 report (AI extracted, human reviewed)' },
+        { id:'RQ-4', name:'Attestation timeliness', dim:'RQ', dimCls:'badge-amber', raw:'0 days', score:0, scoreCls:'var(--risk-normal)', updated:'system', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Days since attestation report was due. On-time→0, 7d late→30, 15d→44, 30d→70, 60d+→100.<br><strong>Current:</strong> On schedule, 0 days overdue → <strong>Score: 0</strong>' },
+        { id:'OC-7', name:'Total supply trend', dim:'OC', dimCls:'badge-teal', raw:'+0.5%', score:0, scoreCls:'var(--risk-normal)', updated:'11:57', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> % change in totalSupply (daily). 0% or growing→0, -0.1%→15, -0.25%→30, -0.5%→50, -1%→70, -2%→85, -3%+→100.<br><strong>Current:</strong> Supply +0.5% (increase, no risk) → <strong>Score: 0</strong><br><strong>Source:</strong> Ethereum on-chain data' },
+        { id:'SE-2', name:'Community Sentiment Score', dim:'SE', dimCls:'badge-purple', raw:'12%', score:22, scoreCls:'var(--risk-normal)', updated:'11:30', statusLbl:'Normal', statusCls:'badge-green', delta:0,
+          detail:'<strong>Definition:</strong> Negative sentiment % from community votes. 0–10%→0, 10–25%→20, 25–40%→40, 40–60%→60, 60–80%→80, 80%+→95.<br><strong>Current:</strong> 12% negative → <strong>Score: 22</strong><br><strong>Source:</strong> Social sentiment aggregator' },
+        { id:'SE-4', name:'FRED macro indicators', dim:'SE', dimCls:'badge-purple', raw:'5.25%', score:60, scoreCls:'var(--risk-high)', updated:'daily', statusLbl:'High', statusCls:'badge-orange', delta:0,
+          detail:'<strong>Definition:</strong> Fed Funds Effective Rate as macro stress indicator. 5.0%+→10, 4.0–5.0%→25, 2.5–4.0%→45, 1.0–2.5%→65, &lt;1.0%→low risk.<br><strong>Current:</strong> Fed rate 5.25% → <strong>Score: 60</strong><br><strong>Source:</strong> FRED API' },
       ],
       alerts: [
-        { color:'var(--risk-normal)', title:'All Variables Normal', desc:'No anomalies detected in current scoring cycle', time:'11:57', hasLine:true },
-        { color:'var(--risk-normal)', title:'Reserve Reviewed — Approved', desc:'PayPal Mar 2026 attestation approved by A.Torres', time:'Apr 10 · 11:20', hasLine:false },
+        { color:'var(--risk-normal)', title:'All Variables Normal', desc:'No anomalies detected in current scoring cycle', time:'11:57', hasLine:true, fromLevel:null, toLevel:null, scoreAtEvent:null, affectedDim:'' },
+        { color:'var(--risk-normal)', title:'Reserve Reviewed — Approved', desc:'PayPal Mar 2026 attestation approved by A.Torres', time:'Apr 10 · 11:20', hasLine:false, fromLevel:null, toLevel:null, scoreAtEvent:null, affectedDim:'' },
       ],
       reviewFields: [
-        { id:'RQ-1', label:'Safe Reserve Ratio', val:'95%', by:'Reviewed by A.Torres' },
-        { id:'RQ-3', label:'Reserve/Supply Ratio', val:'1.08×', by:'Reviewed by A.Torres' },
-        { id:'RQ-4', label:'Days Since Attestation', val:'0 days', by:'Auto-calculated' },
+        { id:'RQ-1', label:'Reserve composition ratio', val:'95%', by:'Reviewed by A.Torres' },
+        { id:'RQ-3', label:'Overcollateralisation ratio', val:'1.08×', by:'Reviewed by A.Torres' },
+        { id:'RQ-4', label:'Attestation timeliness', val:'0 days', by:'Auto-calculated' },
       ],
     },
   };
 
   /* ════════════════════════════════════════════
-     DETAIL PAGE RENDERER
+     DETAIL PAGE RENDERER v2
   ════════════════════════════════════════════ */
   let detailChartInst = null;
+  let contribHistChartInst = null;
+
+  const DIM_COLORS = { RQ:'#0BBFB2', MC:'#F97316', OC:'#3B82F6', SE:'#8B5CF6' };
+  const DIM_NAMES  = { RQ:'Reserve Quality', MC:'Market Confidence', OC:'On-Chain Behaviour', SE:'Sentiment & External' };
+  const LEVEL_BADGE = { Normal:'badge-green', Elevated:'badge-amber', High:'badge-orange', Critical:'badge-red' };
 
   function scoreClass(s) {
     if (s >= 76) return 'score-critical';
@@ -1508,100 +1827,127 @@
     if (s >= 26) return 'score-elevated';
     return 'score-normal';
   }
-  function dimBgClass(s) {
-    if (s >= 76) return 'bg-critical';
-    if (s >= 51) return 'bg-high';
-    if (s >= 26) return 'bg-elevated';
-    return 'bg-normal';
-  }
-  function thresholdRows(current) {
-    const rows = [
-      { range:'Critical: 76-100', col:'var(--risk-critical)', key:'Critical' },
-      { range:'High: 51-75',      col:'var(--risk-high)',     key:'High' },
-      { range:'Elevated: 26-50',  col:'var(--risk-elevated)', key:'Elevated' },
-      { range:'Normal: 0-25',     col:'var(--risk-normal)',   key:'Normal' },
-    ];
-    return rows.map(r => {
-      const isCur = current.startsWith(r.key);
-      return `<div style="display:flex;align-items:center;gap:6px;font-size:11px">
-        <div style="width:10px;height:10px;border-radius:50%;background:${r.col};${isCur?'outline:2px solid '+r.col+';outline-offset:2px':''}"></div>
-        <span style="${isCur?'font-weight:700':'color:var(--text-muted)'}">${r.range}${isCur?' ◀ Current':''}</span>
-      </div>`;
-    }).join('');
-  }
 
   function renderDetail(symbol) {
     const c = COINS[symbol];
     const el = document.getElementById('page-detail');
     el.setAttribute('data-coin', symbol);
 
-    // Rapid Mover banner (only if applicable)
-    const bannerHtml = c.isRapidMover ? `
-      <div class="rapid-mover-banner">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        <strong>Rapid Mover Detected</strong> — ${c.rapidMoverVar} increased ${c.rapidMoverDelta} points in the last scoring cycle. Immediate review recommended.
+    // ── Header: 4 dimension columns ──
+    const dimEntries = Object.entries(c.dims);
+    const dimColsHtml = dimEntries.map(([key, d], idx) => {
+      const col = DIM_COLORS[key] || '#9CA3AF';
+      return `
+        ${idx > 0 ? '<div class="detail-dim-divider"></div>' : ''}
+        <div class="detail-dim-col">
+          <div class="detail-dim-dot" style="background:${col}"></div>
+          <div class="detail-dim-abbr">${key}</div>
+          <div class="detail-dim-val ${scoreClass(d.score)}">${d.score}</div>
+        </div>`;
+    }).join('');
+
+    // ── Chain tags ──
+    const chainTagsHtml = (c.chains || []).map(ch => `<span class="chain-tag">${ch}</span>`).join('');
+
+    // ── Alert sub-banner ──
+    const alertBannerHtml = c.alertBanner ? `
+      <div class="detail-sub-banner">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        ${c.alertBanner}
       </div>` : '';
 
-    // Extra badges
-    const extraBadges = c.isRapidMover
-      ? `<span class="badge ${c.riskBadgeClass} badge-dot">${c.riskLabel}</span><span class="badge badge-purple badge-dot">Rapid Mover</span>`
-      : `<span class="badge ${c.riskBadgeClass} badge-dot">${c.riskLabel}</span>`;
+    // ── Score Contribution rows ──
+    const contribs = c.dimContribs || {};
+    const maxContrib = Math.max(...Object.values(contribs).map(d => d.contrib || 0), 15);
+    const contribRowsHtml = Object.entries(contribs).map(([key, d]) => {
+      const col = DIM_COLORS[key] || '#9CA3AF';
+      const barW = Math.round(d.contrib / maxContrib * 78);
+      const alertTxt = d.varCount > 0 ? `${d.varCount} alert` : 'no alert';
+      return `
+        <div class="contrib-row">
+          <div class="contrib-dot" style="background:${col}"></div>
+          <div class="contrib-label">${DIM_NAMES[key] || key}</div>
+          <div class="contrib-meta">${key} · ${alertTxt}</div>
+          <div class="contrib-bar-wrap"><div class="contrib-bar-fill" style="width:${barW}%;background:${col}99"></div></div>
+          <div class="contrib-val" style="color:${col}">${d.contrib.toFixed(1)}</div>
+        </div>`;
+    }).join('');
 
-    // Dimensions
-    const dimHtml = Object.entries(c.dims).map(([key, d]) => `
-      <div class="dim-card">
-        <div class="dim-card-label">${key}</div>
-        <div class="dim-card-name">${{RQ:'Reserve Quality',MC:'Market Confidence',OC:'On-Chain Behaviour',SE:'Sentiment & External'}[key]}</div>
-        <div class="dim-card-score ${scoreClass(d.score)}">${d.score}</div>
-        <div class="dim-card-gauge"><div class="dim-card-gauge-fill ${dimBgClass(d.score)}" style="width:${d.score}%"></div></div>
-      </div>`).join('');
+    // ── Variable Explorer: group by dim ──
+    const varsByDim = {};
+    (c.variables || []).forEach(v => {
+      if (!varsByDim[v.dim]) varsByDim[v.dim] = [];
+      varsByDim[v.dim].push(v);
+    });
+    const varGroupsHtml = Object.entries(varsByDim).map(([dim, vars]) => {
+      const dimScore = c.dims[dim] ? c.dims[dim].score : 0;
+      const col = DIM_COLORS[dim] || '#9CA3AF';
+      const alertCnt = vars.filter(v => v.score >= 51).length;
+      const alertBadge = alertCnt > 0
+        ? `<span class="badge badge-amber var-group-alert" style="font-size:10px;padding:2px 7px">${alertCnt} alert</span>`
+        : '';
+      const varRowsHtml = vars.map((v, i) => {
+        const deltaNum = v.delta;
+        const deltaHtml = deltaNum !== null && deltaNum !== undefined
+          ? `<div class="var-row-delta ${deltaNum > 0 ? 'up' : deltaNum < 0 ? 'down' : 'neutral'}">${deltaNum > 0 ? '+' + deltaNum : deltaNum === 0 ? '—' : deltaNum}</div>`
+          : `<div class="var-row-delta neutral">rp</div>`;
+        return `
+          <div class="var-row" onclick="toggleVarDetail('vd2-${symbol}-${dim}-${i}')">
+            <div class="var-row-code" onclick="showVarPopover(event,'${v.id}','${v.name.replace(/'/g,'&#39;').replace(/"/g,'&quot;')}','${sanitizeDetail(v.detail).replace(/'/g,'&#39;').replace(/"/g,'&quot;')}')">• ${v.id}</div>
+            <div class="var-row-name">${v.name}</div>
+            ${deltaHtml}
+          </div>
+          <div class="var-detail-row" id="vd2-${symbol}-${dim}-${i}" style="display:none">
+            ${sanitizeDetail(v.detail)}
+            <div class="var-detail-meta">
+              <div class="var-detail-meta-item">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Updated: ${v.updated}
+              </div>
+              <div class="var-detail-meta-item"><span class="badge ${v.statusCls} badge-dot" style="font-size:10px">${v.statusLbl}</span></div>
+            </div>
+          </div>`;
+      }).join('');
+      return `
+        <div class="var-group">
+          <div class="var-group-header" onclick="toggleVarGroup('vg-${symbol}-${dim}')">
+            <div class="var-group-dot" style="background:${col}"></div>
+            <div class="var-group-name">${DIM_NAMES[dim] || dim}</div>
+            ${alertBadge}
+            <div class="var-group-score ${scoreClass(dimScore)}">${dimScore}</div>
+            <svg class="var-group-chevron rotated" id="chev-${symbol}-${dim}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div id="vg-${symbol}-${dim}">${varRowsHtml}</div>
+        </div>`;
+    }).join('');
 
-    // Drivers
-    const driversHtml = c.drivers.map(d => `
-      <div class="driver-item">
-        <div class="driver-rank-badge" style="background:${d.rankColor}">${d.rank}</div>
-        <div class="driver-id">${d.id}</div>
-        <div class="driver-info">
-          <div class="driver-name">${d.name}</div>
-          <div class="driver-desc">${d.desc}</div>
-        </div>
-        <div class="driver-score-wrap">
-          <div class="driver-score ${d.scoreClass}">${d.score}</div>
-          <div class="driver-score-label">risk score</div>
-        </div>
-      </div>`).join('');
+    // ── Alert History ──
+    const alertsHtml = (c.alerts || []).map(a => {
+      const transHtml = (a.fromLevel && a.toLevel) ? `
+        <div class="alert-transition">
+          <span class="badge ${LEVEL_BADGE[a.fromLevel] || 'badge-gray'} badge-dot" style="font-size:10px">${a.fromLevel}</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <span class="badge ${LEVEL_BADGE[a.toLevel] || 'badge-gray'} badge-dot" style="font-size:10px">${a.toLevel}</span>
+          ${a.scoreAtEvent ? `<span class="alert-score-chip">Score ${a.scoreAtEvent}</span>` : ''}
+          ${a.affectedDim ? `<span class="badge badge-gray" style="font-size:10px">${a.affectedDim}</span>` : ''}
+        </div>` : '';
+      return `
+        <div class="timeline-item">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot" style="background:${a.color}"></div>
+            ${a.hasLine ? '<div class="timeline-line"></div>' : ''}
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">${a.title}</div>
+            <div class="timeline-desc">${a.desc}</div>
+            ${transHtml}
+          </div>
+          <div class="timeline-time">${a.time}</div>
+        </div>`;
+    }).join('');
 
-    // Variables table rows
-    const varRowsHtml = c.variables.map((v, i) => `
-      <tr onclick="toggleExpandDyn('vrow-${symbol}-${i}')" style="cursor:pointer">
-        <td><span class="mono">${v.id}</span></td>
-        <td style="font-weight:600">${v.name}</td>
-        <td><span class="badge ${v.dimCls}">${v.dim}</span></td>
-        <td style="font-family:'Fira Code',monospace;font-size:12px">${v.raw}</td>
-        <td><span style="font-weight:700;color:${v.scoreCls}">${v.score}</span></td>
-        <td style="color:var(--text-muted);font-size:12px">${v.updated}</td>
-        <td><span class="badge ${v.statusCls} badge-dot" style="font-size:10px">${v.statusLbl}</span></td>
-      </tr>
-      <tr id="vrow-${symbol}-${i}" style="display:none">
-        <td class="expand-td" colspan="7"><div class="expand-content">${v.detail}</div></td>
-      </tr>`).join('');
-
-    // Alert timeline
-    const alertsHtml = c.alerts.map(a => `
-      <div class="timeline-item">
-        <div class="timeline-dot-wrap">
-          <div class="timeline-dot" style="background:${a.color}"></div>
-          ${a.hasLine ? '<div class="timeline-line"></div>' : ''}
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-title">${a.title}</div>
-          <div class="timeline-desc">${a.desc}</div>
-        </div>
-        <div class="timeline-time">${a.time}</div>
-      </div>`).join('');
-
-    // Reserve review fields
-    const reviewFieldsHtml = c.reviewFields.map(f => `
+    // ── Reserve review fields ──
+    const reviewFieldsHtml = (c.reviewFields || []).map(f => `
       <div class="review-status-item">
         <div>
           <div class="review-field-id">${f.id}</div>
@@ -1613,6 +1959,36 @@
         </div>
       </div>`).join('');
 
+    // ── Top Risk Drivers ──
+    const driversHtml = (c.drivers || []).map(d => {
+      const varDef   = (c.variables || []).find(v => v.id === d.id);
+      const defHtml  = varDef ? sanitizeDetail(varDef.detail).replace(/'/g,"&#39;").replace(/"/g,"&quot;") : '';
+      const varName  = d.name.replace(/'/g,"&#39;").replace(/"/g,"&quot;");
+      const chipAttr = defHtml
+        ? `class="driver-id-chip driver-id-clickable" onclick="showVarPopover(event,'${d.id}','${varName}','${defHtml}')" title="Click to view definition"`
+        : `class="driver-id-chip"`;
+      return `
+      <div class="driver-row">
+        <div class="driver-rank-badge" style="background:${d.rankColor || 'var(--risk-elevated)'}">${d.rank}</div>
+        <span ${chipAttr}>${d.id}</span>
+        <div class="driver-info">
+          <div class="driver-name">${d.name}</div>
+          <div class="driver-desc">${d.desc}</div>
+        </div>
+        <div class="driver-score-wrap">
+          <div class="driver-score ${d.scoreClass}">${d.score}</div>
+          <div class="driver-score-label">risk score</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // ── Dim legend for chart ──
+    const dimLegendHtml = Object.entries(DIM_COLORS).map(([k, col]) =>
+      `<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--text-secondary)">
+        <span style="width:10px;height:10px;border-radius:50%;background:${col};display:inline-block"></span>${k}
+      </span>`).join('');
+
+    // ── Render ──
     el.innerHTML = `
       <div class="page-breadcrumb">
         <span onclick="showPage('monitor')" style="cursor:pointer">Monitor Dashboard</span>
@@ -1623,97 +1999,127 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Monitor
       </div>
-      ${bannerHtml}
-      <div class="detail-hero">
-        <div class="detail-hero-top">
-          <div>
-            <div class="detail-coin-name">${symbol}</div>
-            <div class="detail-updated" style="margin-top:3px">${c.name} · Last updated: ${c.updated} · Data freshness: <span style="color:var(--risk-normal);font-weight:600">${c.freshness}</span></div>
+
+      <!-- ── HEADER CARD ── -->
+      <div class="detail-header-card">
+        <div class="detail-header-left">
+          <div class="score-ring ${c.riskScoreClass}">
+            ${c.score}
+            <div class="score-ring-label">SPRI</div>
           </div>
-          <div class="flex-center gap-8">
-            <div class="freshenesss-chip">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Fresh
+          <div>
+            <div class="detail-coin-title">
+              ${symbol}
+              <span class="badge ${c.riskBadgeClass} badge-dot">${c.riskLabel}</span>
+              ${c.isRapidMover ? '<span class="badge badge-purple badge-dot">Rapid Mover</span>' : ''}
+            </div>
+            <div class="detail-coin-sub">${c.name}${c.price ? ' · ' + c.price : ''}</div>
+            <div class="chain-tags">${chainTagsHtml}</div>
+          </div>
+        </div>
+        <div class="detail-dim-cols">${dimColsHtml}</div>
+        <div style="font-size:11px;color:var(--text-muted);text-align:right;flex-shrink:0">
+          <div>Updated ${c.updated}</div>
+          <div style="margin-top:3px">Freshness <span style="color:var(--risk-normal);font-weight:600">${c.freshness}</span></div>
+        </div>
+      </div>
+
+      ${alertBannerHtml}
+
+      <!-- ── TOP RISK DRIVERS ── -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-header" style="align-items:center">
+          <div class="card-title" style="display:flex;align-items:center;gap:6px">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted)">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Top Risk Drivers
+          </div>
+          <span class="factors-chip">${(c.drivers||[]).length} FACTORS</span>
+        </div>
+        <div class="card-body" style="padding:12px 16px">
+          ${driversHtml}
+        </div>
+      </div>
+
+      <!-- ── SCORE CONTRIBUTION + HISTORICAL CONTRIBUTION ── -->
+      <div class="score-contrib-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Score Contribution
+            </div>
+          </div>
+          <div class="card-body">
+            ${contribRowsHtml}
+            <div class="contrib-total-row">
+              <span style="font-weight:600">Composite SPRI</span>
+              <span class="contrib-total-val ${c.riskScoreClass}">${c.score}</span>
             </div>
           </div>
         </div>
-        <div class="detail-hero-metrics">
-          <div class="detail-score-block">
-            <div class="detail-score-num ${c.riskScoreClass}">${c.score}</div>
-            <div class="detail-score-label">Composite Score</div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Historical Score Contribution
+            </div>
+            <div class="chart-tabs" id="ctabs-${symbol}">
+              <div class="chart-tab active" onclick="switchContribChart(event,'D1','${symbol}')">D1</div>
+              <div class="chart-tab" onclick="switchContribChart(event,'1W','${symbol}')">1W</div>
+              <div class="chart-tab" onclick="switchContribChart(event,'1M','${symbol}')">1M</div>
+              <div class="chart-tab" onclick="switchContribChart(event,'3M','${symbol}')">3M</div>
+            </div>
           </div>
-          <div class="detail-divider"></div>
-          <div class="detail-badge-group">${extraBadges}</div>
-          <div class="detail-divider"></div>
-          <div style="font-size:12px;color:var(--text-secondary)">
-            <div style="font-weight:600;margin-bottom:6px">Score Formula</div>
-            <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--text-muted)">SPRI = (1/9) × Σ(V1…V9)</div>
-            <div style="font-family:'Fira Code',monospace;font-size:11px;color:var(--text-muted);margin-top:3px">≈ ${c.score}</div>
-          </div>
-          <div class="detail-divider"></div>
-          <div>
-            <div style="font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:8px">Risk Threshold</div>
-            <div style="display:flex;flex-direction:column;gap:4px">${thresholdRows(c.currentThreshold)}</div>
+          <div class="card-body">
+            <div style="display:flex;gap:10px;margin-bottom:8px;flex-wrap:wrap">${dimLegendHtml}</div>
+            <div class="chart-container-sm"><canvas id="contribHistChart-${symbol}"></canvas></div>
           </div>
         </div>
       </div>
 
-      <div class="detail-grid">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              Top Risk Drivers
-            </div>
-            <span class="badge badge-gray">3 factors</span>
-          </div>
-          <div class="card-body"><div class="driver-list">${driversHtml}</div></div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              Dimension Breakdown
-            </div>
-          </div>
-          <div class="card-body"><div class="dim-cards">${dimHtml}</div></div>
-        </div>
-      </div>
-
-      <div class="card mb-16" style="margin-bottom:20px">
+      <!-- ── HISTORICAL SPRI SCORE ── -->
+      <div class="card" style="margin-bottom:16px">
         <div class="card-header">
           <div class="card-title">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            Composite Score Trend — ${symbol}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Historical SPRI Score — ${symbol}
           </div>
-          <div class="tabs"><div class="tab active">7D</div><div class="tab">30D</div></div>
+          <div class="chart-tabs" id="stabs-${symbol}">
+            <div class="chart-tab active" onclick="switchSpriChart(event,'Dimension','${symbol}')">Dimension</div>
+            <div class="chart-tab" onclick="switchSpriChart(event,'24H','${symbol}')">24H</div>
+            <div class="chart-tab" onclick="switchSpriChart(event,'1W','${symbol}')">1W</div>
+            <div class="chart-tab" onclick="switchSpriChart(event,'2W','${symbol}')">2W</div>
+            <div class="chart-tab" onclick="switchSpriChart(event,'30D','${symbol}')">30D</div>
+          </div>
         </div>
         <div class="card-body">
           <div class="chart-container-sm"><canvas id="detailTrendChart"></canvas></div>
         </div>
       </div>
 
-      <div class="card mb-16" style="margin-bottom:20px">
+      <!-- ── VARIABLE EXPLORER ── -->
+      <div class="card" style="margin-bottom:16px">
         <div class="card-header">
           <div class="card-title">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-            Variable Drilldown
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            Variable Explorer
           </div>
-          <span class="badge badge-gray">9 variables</span>
+          <div class="var-explorer-actions">
+            <button class="var-explorer-btn" onclick="expandAllVars('${symbol}')">Expand All</button>
+            <button class="var-explorer-btn" onclick="collapseAllVars('${symbol}')">Collapse All</button>
+          </div>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Variable Name</th><th>Dimension</th><th>Raw Value</th><th>Norm. Score</th><th>Updated</th><th>Status</th></tr></thead>
-            <tbody>${varRowsHtml}</tbody>
-          </table>
-        </div>
+        <div class="card-body" style="padding-top:8px">${varGroupsHtml}</div>
       </div>
 
+      <!-- ── ALERT HISTORY + RESERVE REVIEW ── -->
       <div class="detail-2col">
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               Alert History
             </div>
           </div>
@@ -1722,7 +2128,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               Reserve Review Status
             </div>
             <span class="badge ${c.reviewBadge}">${c.reviewStatus}</span>
@@ -1739,70 +2145,420 @@
         </div>
       </div>`;
 
-    // Re-create the detail trend chart
-    if (detailChartInst) { detailChartInst.destroy(); detailChartInst = null; }
+    // ── Init charts ──
+    initDetailCharts(c, symbol);
+  }
+
+  /* ── Variable Explorer helpers ── */
+  function toggleVarGroup(id) {
+    const rows = document.getElementById(id);
+    if (!rows) return;
+    const hidden = rows.style.display === 'none';
+    rows.style.display = hidden ? '' : 'none';
+    const chevId = id.replace('vg-', 'chev-');
+    const chev = document.getElementById(chevId);
+    if (chev) chev.classList.toggle('rotated', hidden);
+  }
+  function toggleVarDetail(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
+  }
+  function expandAllVars(symbol) {
+    const coin = COINS[symbol];
+    const dims = [...new Set((coin.variables || []).map(v => v.dim))];
+    dims.forEach(dim => {
+      const rows = document.getElementById('vg-' + symbol + '-' + dim);
+      const chev  = document.getElementById('chev-' + symbol + '-' + dim);
+      if (rows) rows.style.display = '';
+      if (chev)  chev.classList.add('rotated');
+    });
+  }
+  function collapseAllVars(symbol) {
+    const coin = COINS[symbol];
+    const dims = [...new Set((coin.variables || []).map(v => v.dim))];
+    dims.forEach(dim => {
+      const rows = document.getElementById('vg-' + symbol + '-' + dim);
+      const chev  = document.getElementById('chev-' + symbol + '-' + dim);
+      if (rows) rows.style.display = 'none';
+      if (chev)  chev.classList.remove('rotated');
+    });
+  }
+
+  /* ── Chart switching helpers ── */
+  function switchContribChart(evt, range, symbol) {
+    document.querySelectorAll('#ctabs-' + symbol + ' .chart-tab').forEach(t => t.classList.remove('active'));
+    evt.target.classList.add('active');
+  }
+  function switchSpriChart(evt, mode, symbol) {
+    document.querySelectorAll('#stabs-' + symbol + ' .chart-tab').forEach(t => t.classList.remove('active'));
+    evt.target.classList.add('active');
+    if (!detailChartInst) return;
+    const c = COINS[symbol];
+    if (mode === 'Dimension') {
+      detailChartInst.data.datasets = Object.entries(c.dimTrendData || {}).map(([dim, data]) => ({
+        label: dim, data,
+        borderColor: DIM_COLORS[dim] || '#9CA3AF', backgroundColor: 'transparent',
+        borderWidth: 2, tension: 0.35, fill: false, pointRadius: 2, pointHoverRadius: 4,
+      }));
+    } else {
+      detailChartInst.data.datasets = [{
+        label: 'Composite Score', data: c.trendData,
+        borderColor: c.trendColor, backgroundColor: c.trendBg,
+        borderWidth: 2.5, tension: 0.35, fill: true,
+        pointBackgroundColor: c.trendColor, pointRadius: 3, pointHoverRadius: 5,
+      }];
+    }
+    detailChartInst.update();
+  }
+
+  /* ── Chart initialization ── */
+  function initDetailCharts(c, symbol) {
+    if (detailChartInst)      { detailChartInst.destroy();      detailChartInst = null; }
+    if (contribHistChartInst) { contribHistChartInst.destroy(); contribHistChartInst = null; }
+
+    // Historical SPRI Score — starts in Dimension mode (multi-line)
     const dCtx = document.getElementById('detailTrendChart').getContext('2d');
     detailChartInst = new Chart(dCtx, {
       type: 'line',
       plugins: [riskBandPlugin],
       data: {
         labels,
-        datasets: [
-          { label:'Composite Score', data: c.trendData, borderColor: c.trendColor, backgroundColor: c.trendBg,
-            borderWidth:2.5, tension:0.35, fill:true, pointBackgroundColor: c.trendColor, pointRadius:3, pointHoverRadius:5 },
-          { label:'MC Dimension', data: c.trendMCData, borderColor:'#3B82F6',
-            borderWidth:1.5, borderDash:[4,3], tension:0.35, fill:false, pointRadius:2, pointHoverRadius:4, backgroundColor:'transparent' }
-        ]
+        datasets: Object.entries(c.dimTrendData || { Composite: c.trendData }).map(([dim, data]) => ({
+          label: dim, data,
+          borderColor: DIM_COLORS[dim] || c.trendColor,
+          backgroundColor: 'transparent',
+          borderWidth: 2, tension: 0.35, fill: false, pointRadius: 2, pointHoverRadius: 4,
+        }))
       },
       options: {
-        responsive:true, maintainAspectRatio:false,
-        interaction:{ intersect:false, mode:'index' },
+        responsive: true, maintainAspectRatio: false,
+        interaction: { intersect: false, mode: 'index' },
         plugins: {
-          legend:{ display:true, position:'top', labels:{ font:{size:11}, boxWidth:10, color:'#6B7280' } },
-          tooltip:{ backgroundColor:'#fff', titleColor:'#111827', bodyColor:'#6B7280', borderColor:'#E4E7EE', borderWidth:1, padding:10 }
+          legend: { display: true, position: 'top', labels: { font: { size: 11 }, boxWidth: 10, color: '#6B7280' } },
+          tooltip: { backgroundColor: '#fff', titleColor: '#111827', bodyColor: '#6B7280', borderColor: '#E4E7EE', borderWidth: 1, padding: 10 }
         },
         scales: {
-          x:{ grid:{display:false}, ticks:{font:{size:11},color:'#9CA3AF'} },
-          y:{ min:0, max:100, grid:{color:'#F3F4F6'}, ticks:{font:{size:11},color:'#9CA3AF',stepSize:25} }
+          x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#9CA3AF' } },
+          y: { min: 0, max: 100, grid: { color: '#F3F4F6' }, ticks: { font: { size: 11 }, color: '#9CA3AF', stepSize: 25 } }
+        }
+      }
+    });
+
+    // Historical Score Contribution — per-dimension multi-line
+    const cCtx = document.getElementById('contribHistChart-' + symbol).getContext('2d');
+    const totalVarWeight = Object.values(c.dimContribs || {}).reduce((s, d) => s + (d.varCount || 1), 0) || 9;
+    contribHistChartInst = new Chart(cCtx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: Object.entries(c.dimTrendData || {}).map(([dim, data]) => {
+          const dc = (c.dimContribs || {})[dim];
+          const weight = dc ? dc.varCount / totalVarWeight : 0.25;
+          return {
+            label: dim, data: data.map(v => parseFloat((v * weight).toFixed(1))),
+            borderColor: DIM_COLORS[dim] || '#9CA3AF', backgroundColor: 'transparent',
+            borderWidth: 2, tension: 0.35, fill: false, pointRadius: 2, pointHoverRadius: 4,
+          };
+        })
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { intersect: false, mode: 'index' },
+        plugins: {
+          legend: { display: false },
+          tooltip: { backgroundColor: '#fff', titleColor: '#111827', bodyColor: '#6B7280', borderColor: '#E4E7EE', borderWidth: 1, padding: 10 }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#9CA3AF' } },
+          y: { min: 0, grid: { color: '#F3F4F6' }, ticks: { font: { size: 11 }, color: '#9CA3AF' } }
         }
       }
     });
   }
 
   /* ════════════════════════════════════════════
+     HELPERS
+  ════════════════════════════════════════════ */
+  function sanitizeDetail(html) {
+    if (!html) return '';
+    // 1. Remove "Rule" lines
+    let out = html
+      .replace(/<br><strong>Rule[^<]*<\/strong>[^<]*/gi, '')
+      .replace(/<strong>Rule[^<]*<\/strong>[^<]*<br>/gi, '');
+    // 2. Strip scoring threshold tables from Definition lines
+    //    Matches ". <threshold sequence containing → or = digit>" up to end of segment
+    //    e.g. "90%+→0, 80%→10, ..." or "≥1.05×→0, ..." or "<1% = 0, 1–2% = 15, ..."
+    out = out.replace(
+      /(<strong>Definition[^:]*:<\/strong>[^<]*?)\.\s+[^<]*?(?:→|\s=\s?\d)[^<]*/g,
+      '$1.'
+    );
+    // 3. Strip "→ Score: X" or "→ Preliminary Score: X" from Current lines
+    out = out.replace(
+      /\s*→\s*<strong>(?:Preliminary\s+)?Score:\s*[\d.]+<\/strong>/gi,
+      ''
+    );
+    return out;
+  }
+
+  /* ════════════════════════════════════════════
+     VARIABLE DEFINITION POPOVER
+  ════════════════════════════════════════════ */
+  function showVarPopover(evt, varId, varName, defHtml) {
+    evt.stopPropagation();
+    const pop = document.getElementById('var-def-popover');
+    document.getElementById('vdp-id').textContent   = varId;
+    document.getElementById('vdp-name').textContent = varName;
+    document.getElementById('vdp-body').innerHTML   = defHtml;
+    const rect = evt.target.getBoundingClientRect();
+    const top  = rect.bottom + window.scrollY + 6;
+    const left = Math.min(rect.left + window.scrollX, window.innerWidth - 350);
+    pop.style.top  = top + 'px';
+    pop.style.left = Math.max(8, left) + 'px';
+    pop.classList.add('vdp-visible');
+  }
+  function closeVarPopover() {
+    const pop = document.getElementById('var-def-popover');
+    if (pop) pop.classList.remove('vdp-visible');
+  }
+  document.addEventListener('click', closeVarPopover);
+
+  /* ════════════════════════════════════════════
      PAGE NAVIGATION
   ════════════════════════════════════════════ */
-  const pageIds = ['page-monitor', 'page-detail', 'page-review'];
+  const pageIds = ['page-monitor', 'page-detail', 'page-review', 'page-datafeed'];
   const navItems = document.querySelectorAll('.nav-item');
 
   function showPage(name, coin) {
-    // Hide all pages
-    pageIds.forEach(id => document.getElementById(id).classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
+    // Hide all regular pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 
-    // If navigating to detail, render the correct coin
+    const pageEl = document.getElementById('page-' + name);
+    if (pageEl) pageEl.classList.add('active');
+
     if (name === 'detail' && coin) renderDetail(coin);
+    if (name === 'datafeed') renderDataFeed();
 
     // Topbar text
     const titlesMap = {
-      monitor: ['Monitor Dashboard', 'Stablecoin Peg Risk Index'],
-      detail:  [coin ? coin + ' Detail' : 'Coin Detail', 'Monitor Dashboard › ' + (coin || '')],
-      review:  ['Reserve Review', 'Operations › Reserve Quality'],
+      monitor:   ['Monitor Dashboard', 'Stablecoin Peg Risk Index'],
+      detail:    [coin ? coin + ' Detail' : 'Coin Detail', 'Monitor Dashboard › ' + (coin || '')],
+      review:    ['Reserve Review', 'Operations › Reserve Quality'],
+      datafeed:  ['Data Feed Monitor', 'System › Data Sources'],
     };
-    const t = titlesMap[name];
+    const t = titlesMap[name] || [name, ''];
     document.getElementById('topbar-title').textContent = t[0];
     document.getElementById('topbar-sub').textContent   = t[1];
 
-    // Nav highlight — detail is a sub-page of Monitor, so keep Monitor active
-    const navMap = { monitor: 0, detail: 0, review: 1 };
+    // Nav highlight
+    const navMap = { monitor: 0, detail: 0, review: 2, datafeed: 1 };
     navItems.forEach((el, i) => el.classList.toggle('active', i === navMap[name]));
     window.scrollTo(0, 0);
   }
 
-  /* ── Variable expand/collapse (dynamic rows) ── */
-  function toggleExpandDyn(id) {
-    const row = document.getElementById(id);
-    if (row) row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+  /* ════════════════════════════════════════════
+     MONITOR TABLE & CARD VIEW
+  ════════════════════════════════════════════ */
+  let monitorView = 'table';
+
+  function setMonitorView(view, el) {
+    monitorView = view;
+    document.querySelectorAll('.vt-btn').forEach(b => b.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderMonitorTable();
+  }
+  const MONITOR_COINS = [
+    ...Object.values(COINS),
+    { symbol:'USDe', name:'Ethena USDe', score:null, riskLabel:null,
+      riskScoreClass:'', dims:{RQ:{score:null},MC:{score:null},OC:{score:null},SE:{score:null}},
+      isRapidMover:false, updated:'—', alerts:[], pending:true },
+  ];
+
+  const RISK_DOT_COLOR = {
+    'Normal':   'var(--risk-normal)',
+    'Elevated': 'var(--risk-elevated)',
+    'High Risk':'var(--risk-high)',
+    'Critical': 'var(--risk-critical)',
+  };
+  const RISK_TEXT_COLOR = {
+    'Normal':   'var(--risk-normal-dark)',
+    'Elevated': 'var(--risk-elevated-dark)',
+    'High Risk':'var(--risk-high-dark)',
+    'Critical': 'var(--risk-critical-dark)',
+  };
+
+  let monitorFilter = 'all';
+  let monitorSort   = { col: 'score', dir: 'desc' };
+
+  function renderMonitorTable() {
+    const wrap = document.getElementById('spri-table-wrap');
+    if (!wrap) return;
+
+    // ── CARD VIEW ─────────────────────────────────
+    if (monitorView === 'card') {
+      const topCoins = Object.values(COINS).slice(0, 3);  // top by volume (order in COINS)
+      const cards = topCoins.map(c => {
+        const dot  = RISK_DOT_COLOR[c.riskLabel]  || 'var(--text-muted)';
+        const txt  = RISK_TEXT_COLOR[c.riskLabel] || 'var(--text-muted)';
+        const topDriver = c.drivers && c.drivers[0];
+        const dimBars = ['RQ','MC','OC','SE'].map(dim => {
+          const s = c.dims[dim] ? c.dims[dim].score : 0;
+          const fillCls = scoreClass(s).replace('score-','bg-');
+          return `<div class="mcv-dim-item">
+            <span class="mcv-dim-label">${dim}</span>
+            <div class="mcv-dim-track"><div class="mcv-dim-fill ${fillCls}" style="width:${s}%"></div></div>
+            <span class="mcv-dim-val ${scoreClass(s)}">${s}</span>
+          </div>`;
+        }).join('');
+        return `
+          <div class="mcv-card" onclick="showPage('detail','${c.symbol}')">
+            <div class="mcv-card-head">
+              <div class="mcv-score-ring ${c.riskScoreClass}">
+                <span>${c.score}</span>
+                <span class="mcv-ring-label">SPRI</span>
+              </div>
+              <div class="mcv-info">
+                <div class="mcv-symbol">${c.symbol}</div>
+                <div class="mcv-name">${c.name}</div>
+                <div class="mcv-badge">
+                  <span class="badge ${c.riskBadgeClass} badge-dot" style="font-size:10px">${c.riskLabel}</span>
+                </div>
+              </div>
+            </div>
+            <div class="mcv-dims">${dimBars}</div>
+            ${topDriver ? `<div class="mcv-driver">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+              <strong>Top: ${topDriver.id}</strong>&nbsp;${topDriver.name}
+            </div>` : ''}
+            <div class="mcv-foot">View Detail →</div>
+          </div>`;
+      }).join('');
+      const pendingCard = `<div class="mcv-pending-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div style="font-weight:600;font-size:13px;color:var(--text-secondary)">USDe</div>
+        <div style="font-size:11px">Awaiting data initialization</div>
+        <span class="badge badge-gray badge-dot" style="margin-top:4px;font-size:10px">Pending</span>
+      </div>`;
+      wrap.innerHTML = `<div class="monitor-card-grid">${cards}${pendingCard}</div>
+        <div class="table-footer-row" style="padding:6px 16px 12px">Showing top 3 stablecoins by volume · Card View</div>`;
+      return;
+    }
+
+    // ── TABLE VIEW (default) ────────────────────────
+    let coins = MONITOR_COINS.filter(c => {
+      if (c.pending) return monitorFilter === 'all';
+      if (monitorFilter === 'all')    return true;
+      if (monitorFilter === 'active') return c.alerts && c.alerts.length > 0;
+      return c.riskLabel === monitorFilter;
+    });
+
+    // Sort regular rows; pending always last
+    const regular = coins.filter(c => !c.pending);
+    const pending  = coins.filter(c => c.pending);
+    regular.sort((a, b) => {
+      let av, bv;
+      if      (monitorSort.col === 'score') { av = a.score || 0; bv = b.score || 0; }
+      else if (monitorSort.col === 'rq')    { av = a.dims.RQ.score || 0; bv = b.dims.RQ.score || 0; }
+      else if (monitorSort.col === 'mc')    { av = a.dims.MC.score || 0; bv = b.dims.MC.score || 0; }
+      else if (monitorSort.col === 'oc')    { av = a.dims.OC.score || 0; bv = b.dims.OC.score || 0; }
+      else if (monitorSort.col === 'se')    { av = a.dims.SE.score || 0; bv = b.dims.SE.score || 0; }
+      else if (monitorSort.col === 'name')  { return monitorSort.dir === 'asc' ? a.symbol.localeCompare(b.symbol) : b.symbol.localeCompare(a.symbol); }
+      else { av = a.score || 0; bv = b.score || 0; }
+      return monitorSort.dir === 'asc' ? av - bv : bv - av;
+    });
+    const sorted = [...regular, ...pending];
+
+    // Sort icon helper
+    function sortIcon(col) {
+      const active = monitorSort.col === col;
+      const up = `<polyline points="12 19 12 5"/><polyline points="5 12 12 5 19 12"/>`;
+      const dn = `<polyline points="12 5 12 19"/><polyline points="5 12 12 19 19 12"/>`;
+      const both = `<polyline points="12 3 12 9"/><polyline points="12 15 12 21"/><polyline points="6 6 12 3 18 6"/><polyline points="6 18 12 21 18 18"/>`;
+      const icon = active ? (monitorSort.dir === 'asc' ? up : dn) : both;
+      const op = active ? '1' : '0.3';
+      return `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:${op};margin-left:3px;vertical-align:middle">${icon}</svg>`;
+    }
+
+    // Table rows
+    const rowsHtml = sorted.map(c => {
+      if (c.pending) {
+        return `<tr class="pending-row">
+          <td><div class="spri-symbol" style="color:var(--text-muted)">${c.symbol}</div><div class="spri-coin-name">${c.name}</div></td>
+          <td colspan="8" style="color:var(--text-muted);font-size:12px;font-style:italic">Awaiting data initialization — 7-day window not met</td>
+          <td></td>
+        </tr>`;
+      }
+      const dot  = RISK_DOT_COLOR[c.riskLabel]  || 'var(--text-muted)';
+      const txt  = RISK_TEXT_COLOR[c.riskLabel] || 'var(--text-muted)';
+      const hasAlert = c.alerts && c.alerts.length > 0;
+      const dimNum = (dim) => {
+        const s = c.dims[dim] ? c.dims[dim].score : 0;
+        return `<span class="dim-num ${scoreClass(s)}">${s}</span>`;
+      };
+      return `<tr onclick="showPage('detail','${c.symbol}')">
+        <td>
+          <div class="spri-symbol">
+            ${c.symbol}
+            ${c.isRapidMover ? `<span class="rapid-tag"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>Mover</span>` : ''}
+          </div>
+          <div class="spri-coin-name">${c.name}</div>
+        </td>
+        <td><span class="spri-score-num ${c.riskScoreClass}">${c.score}</span></td>
+        <td>
+          <div class="risk-level-cell">
+            <div class="risk-level-dot" style="background:${dot}"></div>
+            <span style="color:${txt}">${c.riskLabel}</span>
+          </div>
+        </td>
+        <td>${dimNum('RQ')}</td>
+        <td>${dimNum('MC')}</td>
+        <td>${dimNum('OC')}</td>
+        <td>${dimNum('SE')}</td>
+        <td>${hasAlert ? '<span class="alert-yes">Yes</span>' : '<span class="alert-no">—</span>'}</td>
+        <td style="font-size:11px;color:var(--text-muted);white-space:nowrap">${c.updated}</td>
+        <td><div class="row-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div></td>
+      </tr>`;
+    }).join('');
+
+    // Header th class helper
+    const thc = (col) => monitorSort.col === col ? 'th-sorted' : '';
+    const filterLabel = monitorFilter === 'all' ? 'All' : monitorFilter === 'active' ? 'Active Data' : monitorFilter;
+    const visibleCount = regular.length;
+
+    wrap.innerHTML = `
+      <table class="spri-table">
+        <thead>
+          <tr>
+            <th class="${thc('name')}" onclick="setMonitorSort('name')">Stablecoin ${sortIcon('name')}</th>
+            <th class="${thc('score')}" onclick="setMonitorSort('score')">SPRI Score ${sortIcon('score')}</th>
+            <th>Risk Level</th>
+            <th class="${thc('rq')}" onclick="setMonitorSort('rq')" style="text-align:center">RQ ${sortIcon('rq')}</th>
+            <th class="${thc('mc')}" onclick="setMonitorSort('mc')" style="text-align:center">MC ${sortIcon('mc')}</th>
+            <th class="${thc('oc')}" onclick="setMonitorSort('oc')" style="text-align:center">OC ${sortIcon('oc')}</th>
+            <th class="${thc('se')}" onclick="setMonitorSort('se')" style="text-align:center">SE ${sortIcon('se')}</th>
+            <th>Alert</th>
+            <th>Updated</th>
+            <th style="width:32px"></th>
+          </tr>
+        </thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+      <div class="table-footer-row">${visibleCount} of ${MONITOR_COINS.length} stablecoins · ${filterLabel}</div>
+    `;
+  }
+
+  function setMonitorFilter(filter, el) {
+    monitorFilter = filter;
+    document.querySelectorAll('.mf-tab').forEach(t => t.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderMonitorTable();
+  }
+
+  function setMonitorSort(col) {
+    monitorSort.dir = monitorSort.col === col
+      ? (monitorSort.dir === 'asc' ? 'desc' : 'asc')
+      : (col === 'name' ? 'asc' : 'desc');
+    monitorSort.col = col;
+    renderMonitorTable();
   }
 
   /* ── Approve Review ── */
@@ -1844,7 +2600,7 @@
       datasets: [
         {
           label: 'USDT',
-          data: [32, 38, 42, 45, 52, 58, 68],
+          data: [32, 36, 40, 39, 37, 38, 38],
           borderColor: '#F97316', backgroundColor: 'rgba(249,115,22,0.08)',
           borderWidth: 2.5, tension: 0.35, fill: false,
           pointBackgroundColor: '#F97316', pointRadius: 3, pointHoverRadius: 5,
@@ -1891,6 +2647,290 @@
     }
   });
 
+  // ── Init monitor table on page load ──
+  renderMonitorTable();
+
+  /* ════════════════════════════════════════════
+     DATA FEED MONITOR
+  ════════════════════════════════════════════ */
+  const DATA_FEEDS = [
+    {
+      id:'DF-01', name:'CoinGecko Simple Price API',
+      category:'Price', freq:'1 min', lastUpdated:'12:05 UTC', status:'Live', latency:'320 ms',
+      variables:['MC-1'], coins:['USDT','USDC','PYUSD'],
+      url:'https://api.coingecko.com/api/v3/simple/price?ids=tether,usd-coin,paypal-usd&vs_currencies=usd&precision=8',
+      keyField:'.usd (per asset)',
+      transform:'Subtract from $1.00 peg. Multiply by 10,000 → basis points. Example: $0.9995 → 5bp.',
+      sample:'{"tether":{"usd":0.9995},"usd-coin":{"usd":1.0002},"paypal-usd":{"usd":1.0001}}',
+      currentValues:[
+        { coin:'USDT', raw:'$0.9995', extracted:'5 bp', score:9,  scoreCls:'score-normal'  },
+        { coin:'USDC', raw:'$1.0002', extracted:'2 bp', score:5,  scoreCls:'score-normal'  },
+        { coin:'PYUSD',raw:'$1.0001', extracted:'1 bp', score:3,  scoreCls:'score-normal'  },
+      ],
+    },
+    {
+      id:'DF-02', name:'CoinGecko Market Chart (30D Volume)',
+      category:'Market', freq:'30 min', lastUpdated:'12:00 UTC', status:'Live', latency:'540 ms',
+      variables:['MC-8'], coins:['USDT','USDC','PYUSD'],
+      url:'https://api.coingecko.com/api/v3/coins/{id}/market_chart?vs_currency=usd&days=30',
+      keyField:'total_volumes[*][1]',
+      transform:'Compute 30-day mean & stdev. σ = (today_vol – mean) / stdev. Round to 1 decimal.',
+      sample:'{"total_volumes":[[1745380200000,8200000000],[1745466600000,9850000000],...]}',
+      currentValues:[
+        { coin:'USDT', raw:'$9.85B today / $8.0B avg / σ=$0.6B', extracted:'1.2σ', score:55, scoreCls:'score-high'     },
+        { coin:'USDC', raw:'$3.2B today / $2.8B avg / σ=$0.5B',  extracted:'0.8σ', score:35, scoreCls:'score-elevated' },
+        { coin:'PYUSD',raw:'$0.41B today / $0.39B avg / σ=$0.1B',extracted:'0.2σ', score:10, scoreCls:'score-normal'   },
+      ],
+    },
+    {
+      id:'DF-03', name:'DeFiLlama Pools API (DEX TVL)',
+      category:'On-chain', freq:'10 min', lastUpdated:'12:00 UTC', status:'Live', latency:'480 ms',
+      variables:['MC-5'], coins:['USDT','USDC'],
+      url:'https://yields.llama.fi/pools?project=curve,uniswap,balancer',
+      keyField:'data[*].tvlUsd (filter by symbol)',
+      transform:'7-day moving average TVL. % change = (today – 7D_MA) / 7D_MA × 100. Negate if declining. Backfill required for <7 days of data.',
+      sample:'{"data":[{"chain":"Ethereum","project":"curve","symbol":"USDT","tvlUsd":712940000},{"symbol":"USDC","tvlUsd":538210000},...]}',
+      currentValues:[
+        { coin:'USDT', raw:'$712.9M today / $769.0M 7D MA', extracted:'-7.2%', score:44, scoreCls:'score-elevated' },
+        { coin:'USDC', raw:'$538.2M today / $611.6M 7D MA', extracted:'-12.0%',score:55, scoreCls:'score-high'     },
+      ],
+    },
+    {
+      id:'DF-04', name:'DeFiLlama Stablecoins API (Supply)',
+      category:'On-chain', freq:'1 block (~12s)', lastUpdated:'12:05 UTC', status:'Live', latency:'210 ms',
+      variables:['OC-7'], coins:['USDT','USDC','PYUSD'],
+      url:'https://stablecoins.llama.fi/stablecoins?includePrice=true',
+      keyField:'peggedAssets[*].currentChainBalances.ethereum.peggedUSD',
+      transform:'(today_supply – yesterday_supply) / yesterday_supply × 100. Only declines count as risk; growth scores 0.',
+      sample:'{"peggedAssets":[{"name":"Tether","currentChainBalances":{"ethereum":{"peggedUSD":77500000000},"tron":{"peggedUSD":60300000000}}},...]}',
+      currentValues:[
+        { coin:'USDT', raw:'$111.7B today / $113.8B yesterday', extracted:'-1.8%', score:34, scoreCls:'score-elevated' },
+        { coin:'USDC', raw:'$42.5B today / $42.8B yesterday',   extracted:'-0.8%', score:20, scoreCls:'score-normal'   },
+        { coin:'PYUSD',raw:'$0.81B today / $0.80B yesterday',   extracted:'+0.5%', score:0,  scoreCls:'score-normal'   },
+      ],
+    },
+    {
+      id:'DF-05', name:'Ethereum Mainnet RPC (totalSupply)',
+      category:'On-chain', freq:'1 block (~12s)', lastUpdated:'12:05 UTC', status:'Live', latency:'180 ms',
+      variables:['RQ-3'], coins:['USDT','USDC','PYUSD'],
+      url:'https://mainnet.infura.io/v3/{KEY} — eth_call: ERC20.totalSupply()',
+      keyField:'result (hex → decimal, divide by 10^decimals)',
+      transform:'Divide total reserves (from attestation) by on-chain totalSupply, converted to matching units. ratio = reserves / supply. Example: $113.4B ÷ $111.7B = 1.015×.',
+      sample:'{"jsonrpc":"2.0","id":1,"result":"0x00000000000000000000000000000000000000002efd4c5d6d8f595800000000"}',
+      currentValues:[
+        { coin:'USDT', raw:'Supply 111.7B / Reserves 102.9B (attestation)', extracted:'0.92×', score:59, scoreCls:'score-high'     },
+        { coin:'USDC', raw:'Supply 42.8B / Reserves 43.7B (attestation)',  extracted:'1.02×', score:20, scoreCls:'score-normal'   },
+        { coin:'PYUSD',raw:'Supply 0.81B / Reserves 0.87B (attestation)',  extracted:'1.08×', score:10, scoreCls:'score-normal'   },
+      ],
+    },
+    {
+      id:'DF-06', name:'CoinGecko Sentiment Votes',
+      category:'Sentiment', freq:'1 hr', lastUpdated:'11:30 UTC', status:'Stale', latency:'1.2 s',
+      variables:['SE-2'], coins:['USDT','USDC','PYUSD'],
+      url:'https://api.coingecko.com/api/v3/coins/{id}?localization=false&tickers=false&market_data=false',
+      keyField:'sentiment_votes_down_percentage',
+      transform:'Read sentiment_votes_down_percentage directly (0–100). No further calculation; map to threshold scale.',
+      sample:'{"id":"tether","name":"Tether","sentiment_votes_up_percentage":71.9,"sentiment_votes_down_percentage":28.1,"watchlist_portfolio_users":945123}',
+      currentValues:[
+        { coin:'USDT', raw:'28.1% down votes / 71.9% up votes', extracted:'28%',  score:53, scoreCls:'score-high'     },
+        { coin:'USDC', raw:'22.4% down votes / 77.6% up votes', extracted:'22%',  score:40, scoreCls:'score-elevated' },
+        { coin:'PYUSD',raw:'12.0% down votes / 88.0% up votes', extracted:'12%',  score:22, scoreCls:'score-normal'   },
+      ],
+    },
+    {
+      id:'DF-07', name:'FRED API — Fed Funds Rate',
+      category:'Macro', freq:'Daily', lastUpdated:'May 6', status:'Live', latency:'—',
+      variables:['SE-4'], coins:['USDT','USDC','PYUSD'],
+      url:'https://api.stlouisfed.org/fred/series/observations?series_id=DFF&api_key=YOUR_KEY&sort_order=desc&limit=1',
+      keyField:'observations[0].value (string → number)',
+      transform:'Extract value and convert string to number. Map to threshold scale: 5.0%+→10, 4.0–5.0%→25, 2.5–4.0%→45, 1.0–2.5%→65, <1.0%→low. Lower rates = weaker issuer yield = elevated risk.',
+      sample:'{"realtime_start":"2026-05-06","realtime_end":"2026-05-06","observations":[{"date":"2026-04-14","value":"5.25"}]}',
+      currentValues:[
+        { coin:'All', raw:'"5.25" (string from FRED)', extracted:'5.25%', score:81, scoreCls:'score-high' },
+      ],
+    },
+    {
+      id:'DF-08', name:'Issuer Transparency Pages (Manual)',
+      category:'Attestation', freq:'Quarterly / Monthly', lastUpdated:'Apr 22–23', status:'Stale', latency:'Manual',
+      variables:['RQ-1','RQ-4'], coins:['USDT','USDC','PYUSD'],
+      url:'tether.to/en/transparency  ·  circle.com/legal/usdc-transparency  ·  paypal.com/us/digital-wallet/pyusd',
+      keyField:'Reserve breakdown table · Date of last published attestation',
+      transform:'RQ-1: Sum safe-asset categories (T-bills + repos + gov MMFs) ÷ total reserves. RQ-4: Subtract last attestation date from today; compare against expected schedule (monthly USDC/PYUSD, quarterly USDT).',
+      sample:'Tether Q1 2026:\n"T-Bills: 68.2%, Repos: 12.1%, MMFs: 8.4%, Cash: 11.3%"\n"Total reserves: $113.4B | Circulating supply: $111.7B"\n"Report date: Apr 22, 2026 | Expected: Apr 20, 2026"',
+      currentValues:[
+        { coin:'USDT', raw:'68.2% T-bills + 12.1% repos + 8.4% MMFs', extracted:'RQ-1: 62% · RQ-4: 13d overdue', score:82, scoreCls:'score-high' },
+        { coin:'USDC', raw:'91% safe assets (Circle Q1 2026 — pending review)', extracted:'RQ-1: 91% (pending) · RQ-4: 2d overdue', score:15, scoreCls:'score-normal' },
+        { coin:'PYUSD',raw:'95% safe assets (PayPal Mar 2026 — approved)',      extracted:'RQ-1: 95% · RQ-4: 0d',                 score:5,  scoreCls:'score-normal' },
+      ],
+    },
+  ];
+
+  let feedFilter = 'all';
+
+  function filterFeedTable(filter, el) {
+    feedFilter = filter;
+    document.querySelectorAll('#page-datafeed .tab').forEach(t => t.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderDataFeed();
+  }
+
+  function renderDataFeed() {
+    // KPI cards
+    const kpiRow = document.getElementById('feed-kpi-row');
+    if (kpiRow) {
+      const total = DATA_FEEDS.length;
+      const live  = DATA_FEEDS.filter(f => f.status === 'Live').length;
+      const stale = DATA_FEEDS.filter(f => f.status === 'Stale').length;
+      const error = DATA_FEEDS.filter(f => f.status === 'Error').length;
+      const varCount = [...new Set(DATA_FEEDS.flatMap(f => f.variables))].length;
+      kpiRow.innerHTML = `
+        <div class="kpi-card">
+          <div><div class="kpi-label">API Sources</div><div class="kpi-value">${total}</div><div class="kpi-sub">${varCount} variables covered</div></div>
+          <div class="kpi-icon" style="background:var(--teal-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        </div>
+        <div class="kpi-card">
+          <div><div class="kpi-label">Live</div><div class="kpi-value" style="color:var(--risk-normal-dark)">${live}</div><div class="kpi-sub">Polling normally</div></div>
+          <div class="kpi-icon" style="background:var(--risk-normal-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--risk-normal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="kpi-card">
+          <div><div class="kpi-label">Stale</div><div class="kpi-value" style="color:var(--risk-elevated-dark)">${stale}</div><div class="kpi-sub">Overdue or manual</div></div>
+          <div class="kpi-icon" style="background:var(--risk-elevated-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        </div>
+        <div class="kpi-card">
+          <div><div class="kpi-label">Variables</div><div class="kpi-value">${varCount}</div><div class="kpi-sub">RQ / MC / OC / SE</div></div>
+          <div class="kpi-icon" style="background:var(--blue-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+        </div>`;
+    }
+
+    // Feed table
+    const wrap = document.getElementById('feed-table-wrap');
+    if (!wrap) return;
+    const feeds = feedFilter === 'all' ? DATA_FEEDS : DATA_FEEDS.filter(f => f.status === feedFilter);
+
+    const statusHtml = (s) => {
+      const map = { Live:{cls:'feed-live',dot:'var(--risk-normal)',label:'Live'}, Stale:{cls:'feed-stale',dot:'var(--risk-elevated)',label:'Stale'}, Error:{cls:'feed-error',dot:'var(--risk-high)',label:'Error'} };
+      const m = map[s] || {};
+      return `<span class="feed-status ${m.cls}"><span class="feed-dot" style="background:${m.dot}"></span>${m.label}</span>`;
+    };
+
+    const catBadge = { Price:'badge-teal', Market:'badge-teal', 'On-chain':'badge-blue', Attestation:'badge-amber', Sentiment:'badge-purple', Macro:'badge-gray' };
+
+    const varBadge = (vars) => vars.map(v => {
+      const dim = v.substring(0,2);
+      const cls = {RQ:'badge-amber',MC:'badge-orange',OC:'badge-teal',SE:'badge-purple'}[dim] || 'badge-gray';
+      return `<span class="badge ${cls}" style="font-size:9px;padding:1px 5px">${v}</span>`;
+    }).join('');
+
+    const rows = feeds.map((f, idx) => {
+      // Current values mini table
+      const cvRows = (f.currentValues || []).map(cv =>
+        `<tr>
+          <td style="padding:4px 8px;font-weight:600;font-family:'Fira Code',monospace;font-size:11px;color:var(--text-secondary);white-space:nowrap">${cv.coin}</td>
+          <td style="padding:4px 8px;font-size:11px;color:var(--text-muted)">${cv.raw}</td>
+          <td style="padding:4px 8px;font-family:'Fira Code',monospace;font-size:12px;font-weight:700;white-space:nowrap" class="${cv.scoreCls}">${cv.extracted}</td>
+          <td style="padding:4px 8px;font-family:'Fira Code',monospace;font-size:11px;white-space:nowrap" class="${cv.scoreCls}">Score: ${cv.score}</td>
+        </tr>`).join('');
+
+      return `
+        <tr class="feed-row" onclick="toggleFeedDetail('fd-${idx}')">
+          <td style="padding:12px 14px">
+            <div style="font-size:13px;font-weight:600;color:var(--text-primary)">${f.name}</div>
+            <div style="margin-top:4px;display:flex;gap:4px;flex-wrap:wrap">${varBadge(f.variables)}</div>
+          </td>
+          <td><span class="badge ${catBadge[f.category] || 'badge-gray'}" style="font-size:10px">${f.category}</span></td>
+          <td style="font-size:12px;color:var(--text-secondary)">${f.freq}</td>
+          <td style="font-size:12px;color:var(--text-secondary);white-space:nowrap">${f.lastUpdated}</td>
+          <td>${statusHtml(f.status)}</td>
+          <td style="font-family:'Fira Code',monospace;font-size:11px;color:var(--text-muted)">${f.latency}</td>
+          <td><div class="row-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div></td>
+        </tr>
+        <tr><td colspan="7" style="padding:0">
+          <div class="feed-detail-row" id="fd-${idx}">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Endpoint</div>
+                <div class="feed-url">${f.url}</div>
+                <div style="margin-top:8px">
+                  <span style="font-size:11px;font-weight:600;color:var(--text-muted)">Key Field: </span>
+                  <code style="font-size:11px;background:var(--bg);padding:1px 6px;border-radius:3px;color:var(--teal-dark)">${f.keyField}</code>
+                </div>
+                <div style="margin-top:8px;font-size:11px;color:var(--text-secondary)"><strong>Transform:</strong> ${f.transform}</div>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Raw API Response (example)</div>
+                <div class="feed-sample">${f.sample}</div>
+              </div>
+            </div>
+            <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Current Extracted Values</div>
+            <table style="width:auto;border-collapse:collapse;background:var(--bg);border-radius:var(--radius-sm);overflow:hidden">
+              <thead><tr>
+                <th style="padding:5px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Coin</th>
+                <th style="padding:5px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Raw Data</th>
+                <th style="padding:5px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Extracted</th>
+                <th style="padding:5px 8px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Score</th>
+              </tr></thead>
+              <tbody>${cvRows}</tbody>
+            </table>
+          </div>
+        </td></tr>`;
+    }).join('');
+
+    wrap.innerHTML = `
+      <table class="spri-table">
+        <thead><tr>
+          <th>Source / Variables</th><th>Category</th><th>Frequency</th>
+          <th>Last Updated</th><th>Status</th><th>Latency</th><th style="width:32px"></th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="table-footer-row">${feeds.length} of ${DATA_FEEDS.length} data sources</div>`;
+  }
+
+  function toggleFeedDetail(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  }
+
 </script>
+<!-- Variable Definition Popover (global, shared) -->
+<div id="var-def-popover" class="var-def-popover">
+  <div class="vdp-header">
+    <span id="vdp-id" class="vdp-id-badge"></span>
+    <span id="vdp-name" class="vdp-name"></span>
+    <span class="vdp-close" onclick="closeVarPopover()">✕</span>
+  </div>
+  <div id="vdp-body" class="vdp-body"></div>
+</div>
+
+<script>
+/* ── Mobile sidebar toggle (Phase 1) ── */
+function toggleSidebar() {
+  const sidebar  = document.querySelector('.sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (sidebar.classList.contains('mobile-open')) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add('mobile-open');
+    backdrop.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeSidebar() {
+  const sidebar  = document.querySelector('.sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  sidebar.classList.remove('mobile-open');
+  backdrop.classList.remove('visible');
+  document.body.style.overflow = '';
+}
+// Event delegation: close drawer when any nav item clicked on mobile
+document.addEventListener('click', e => {
+  if (window.innerWidth <= 768 && e.target.closest('.nav-item')) closeSidebar();
+});
+// Escape key closes drawer
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeSidebar();
+});
+</script>
+
 </body>
 </html>
