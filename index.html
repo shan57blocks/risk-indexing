@@ -87,11 +87,11 @@
     .logo-sub  { font-size: 10px; color: var(--text-muted); letter-spacing: .5px; text-transform: uppercase; margin-top: 1px; }
     .sidebar-role {
       margin: 12px 16px 0;
-      padding: 8px 10px;
+      padding: 9px 10px;
       background: var(--teal-light);
       border-radius: var(--radius-sm);
-      font-size: 11px; color: var(--teal-dark); font-weight: 600;
-      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--teal-dark); font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
     }
     .sidebar-nav { padding: 8px 0; flex: 1; overflow-y: auto; }
     .nav-section { padding: 16px 16px 4px; font-size: 10px; color: var(--text-muted); font-weight: 600; letter-spacing: .8px; text-transform: uppercase; }
@@ -676,6 +676,402 @@
     .bg-teal     { background: var(--teal); }
     .bg-muted    { background: var(--border); }
 
+    /* ══════════════════════════════════════════
+       DEMO BAR — layout offset
+    ══════════════════════════════════════════ */
+    body { padding-top: 36px; }
+    .sidebar { top: 36px !important; height: calc(100vh - 36px) !important; }
+    .topbar  { top: 36px !important; }
+
+    .demo-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 36px;
+      background: #1E293B; color: #CBD5E1;
+      display: flex; align-items: center; padding: 0 16px; gap: 14px;
+      z-index: 300; font-size: 12px; font-weight: 500;
+      border-bottom: 1px solid #334155;
+    }
+    .demo-bar-badge {
+      display: flex; align-items: center; gap: 6px;
+      background: #0BBFB2; color: #fff; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 10px; letter-spacing: .5px; text-transform: uppercase;
+    }
+    .demo-bar-sep { width: 1px; height: 18px; background: #334155; }
+    .demo-bar-label { color: #94A3B8; font-size: 11px; }
+    .demo-bar-select {
+      background: #334155; border: 1px solid #475569; color: #E2E8F0;
+      border-radius: 5px; padding: 3px 8px; font-size: 12px; font-weight: 500;
+      font-family: inherit; cursor: pointer; outline: none;
+    }
+    .demo-bar-select option { background: #1E293B; }
+    .demo-bar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .demo-bar-user { font-size: 11px; color: #94A3B8; }
+    .demo-bar-login-btn {
+      background: #0BBFB2; color: #fff; border: none; border-radius: 5px;
+      padding: 4px 12px; font-size: 11px; font-weight: 600; cursor: pointer;
+      font-family: inherit; transition: background .15s;
+    }
+    .demo-bar-login-btn:hover { background: #089C91; }
+    .demo-bar-logout-btn {
+      background: transparent; color: #94A3B8; border: 1px solid #475569;
+      border-radius: 5px; padding: 3px 10px; font-size: 11px; font-weight: 500;
+      cursor: pointer; font-family: inherit; transition: all .15s;
+    }
+    .demo-bar-logout-btn:hover { color: #E2E8F0; border-color: #64748B; }
+
+    /* ══════════════════════════════════════════
+       LOGIN OVERLAY  (image-2 full-page style)
+    ══════════════════════════════════════════ */
+    .login-overlay {
+      position: fixed; inset: 0; z-index: 400;
+      background: #E4F4F1;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 32px 16px; overflow-y: auto;
+    }
+    .login-overlay.hidden { display: none; }
+
+    /* header: logo + tagline */
+    .login-header {
+      text-align: center; margin-bottom: 28px;
+    }
+    .login-logo-wrap {
+      display: inline-flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .login-logo-icon {
+      width: 48px; height: 48px; background: var(--teal); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(11,191,178,0.35);
+    }
+    .login-logo-name  { font-size: 22px; font-weight: 800; color: var(--text-primary); }
+    .login-logo-sub   { font-size: 11px; font-weight: 700; letter-spacing: .08em;
+                        color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+    .login-tagline {
+      font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-top: 4px;
+    }
+
+    /* two-column card */
+    .login-card {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+      display: grid; grid-template-columns: 1fr 1fr;
+      width: 100%; max-width: 780px; overflow: hidden;
+    }
+    .login-col {
+      padding: 36px 32px;
+    }
+    .login-col + .login-col {
+      border-left: 1px solid var(--border);
+    }
+    .login-col-title {
+      font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;
+    }
+    .login-col-sub {
+      font-size: 12px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5;
+    }
+    .login-field { margin-bottom: 14px; }
+    .login-field label { display: block; font-size: 12px; font-weight: 600;
+                         color: var(--text-secondary); margin-bottom: 5px; }
+    .login-input {
+      width: 100%; padding: 9px 12px; box-sizing: border-box;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 13px; font-family: inherit; color: var(--text-primary);
+      background: var(--surface); outline: none; transition: border-color .15s;
+    }
+    .login-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(11,191,178,.12); }
+    .login-textarea {
+      width: 100%; padding: 9px 12px; box-sizing: border-box;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 12px; font-family: inherit; color: var(--text-primary);
+      background: var(--surface); outline: none; resize: vertical;
+      min-height: 76px; transition: border-color .15s;
+    }
+    .login-textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(11,191,178,.12); }
+
+    /* primary sign-in button */
+    .login-btn {
+      width: 100%; padding: 10px 16px; background: var(--teal); color: #fff;
+      border: none; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: background .15s;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      margin-top: 6px;
+    }
+    .login-btn:hover { background: var(--teal-dark); }
+
+    /* SSO button */
+    .login-sso-btn {
+      width: 100%; padding: 9px 16px; background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 8px; transition: border-color .15s, background .15s;
+    }
+    .login-sso-btn:hover { border-color: var(--text-muted); background: var(--bg); }
+    .login-sso-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      background: #FEF3C7; color: #92400E; border-radius: 4px; padding: 2px 6px;
+    }
+
+    /* submit request button (outlined) */
+    .login-submit-btn {
+      width: 100%; padding: 10px 16px; background: var(--bg); color: var(--text-primary);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      margin-top: 6px; transition: background .15s, border-color .15s;
+    }
+    .login-submit-btn:hover { background: #f1f5f9; border-color: var(--text-muted); }
+
+    /* divider */
+    .login-divider {
+      height: 1px; background: var(--border); margin: 14px 0;
+    }
+
+    /* access link */
+    .login-access-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; color: var(--teal); text-decoration: none; cursor: pointer;
+      margin-top: 10px;
+    }
+    .login-access-link:hover { text-decoration: underline; }
+
+    /* demo section below card */
+    .login-demo-bar {
+      margin-top: 20px; width: 100%; max-width: 780px;
+      background: rgba(255,255,255,0.7); border-radius: 12px;
+      padding: 14px 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .login-demo-label {
+      font-size: 11px; font-weight: 700; color: var(--text-muted); white-space: nowrap;
+    }
+    .login-demo-roles { display: flex; gap: 7px; flex-wrap: wrap; }
+    .login-demo-chip {
+      padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    .login-demo-chip:hover { opacity: .82; transform: translateY(-1px); }
+
+    /* ══════════════════════════════════════════
+       AUX OVERLAYS: Access Help & Request Pending
+    ══════════════════════════════════════════ */
+    .aux-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: #F1F5F9;
+      display: flex; align-items: center; justify-content: center;
+      padding: 32px 16px; overflow-y: auto;
+    }
+    .aux-overlay.hidden { display: none; }
+    .aux-card {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      width: 100%; max-width: 520px;
+      padding: 36px 36px 32px;
+    }
+
+    /* access-help icon */
+    .aux-icon-wrap {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .aux-icon-wrap.amber { background: #FEF9C3; }
+    .aux-icon-wrap.teal  { background: #CCFBF1; }
+
+    .aux-title  { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .aux-sub    { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 22px; }
+
+    /* checklist */
+    .aux-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 10px;
+    }
+    .aux-checklist { list-style: none; padding: 0; margin: 0 0 20px; }
+    .aux-checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .aux-checklist li:last-child { border-bottom: none; }
+    .aux-check-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+    }
+    .aux-check-dot.active  { background: var(--teal); }
+    .aux-check-dot.passive { background: #CBD5E1; }
+    .aux-check-main  { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+    .aux-check-desc  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+    /* blocked reasons box */
+    .aux-blocked-box {
+      background: #F1F5F9; border-radius: 8px;
+      padding: 14px 16px; margin-bottom: 24px;
+    }
+    .aux-blocked-box ul { margin: 8px 0 0; padding-left: 16px; }
+    .aux-blocked-box li { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; line-height: 1.5; }
+
+    /* steps list (pending) */
+    .aux-steps { list-style: none; padding: 0; margin: 0; }
+    .aux-steps li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .aux-steps li:last-child { border-bottom: none; }
+    .aux-step-num {
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .aux-step-num.done  { background: var(--teal); color: #fff; }
+    .aux-step-num.todo  { background: #E2E8F0; color: var(--text-muted); }
+    .aux-step-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; padding-top: 2px; }
+
+    /* aux buttons row */
+    .aux-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+    .aux-btn-primary {
+      padding: 9px 18px; background: var(--teal); color: #fff;
+      border: none; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
+      cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 7px;
+      transition: background .15s;
+    }
+    .aux-btn-primary:hover { background: var(--teal-dark); }
+    .aux-btn-ghost {
+      padding: 9px 18px; background: transparent; color: var(--text-secondary);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; gap: 7px; transition: background .15s, border-color .15s;
+    }
+    .aux-btn-ghost:hover { background: var(--bg); border-color: var(--text-muted); }
+    .aux-back-link {
+      font-size: 12px; color: var(--teal); cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .aux-back-link:hover { text-decoration: underline; }
+
+    /* email highlight in pending */
+    .aux-email-highlight { font-weight: 700; color: var(--text-primary); }
+
+    /* ── Modal Dialogs (Invite User / Add Domain) ── */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.55);
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-backdrop.hidden { display: none; }
+    .modal-card {
+      background: var(--surface); border-radius: var(--radius-md); width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25); overflow: hidden;
+    }
+    .modal-header {
+      padding: 20px 24px 16px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+    .modal-close {
+      width: 28px; height: 28px; border-radius: 50%; border: none;
+      background: var(--bg); cursor: pointer; display: flex; align-items: center;
+      justify-content: center; color: var(--text-muted); transition: background .15s;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-body { padding: 20px 24px; }
+    .modal-footer {
+      padding: 14px 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: flex-end; gap: 10px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; display: block; }
+    .form-input {
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 13px; color: var(--text-primary);
+      background: var(--bg); outline: none; box-sizing: border-box;
+      transition: border-color .15s;
+    }
+    .form-input:focus { border-color: var(--teal); }
+    .form-select {
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 13px; color: var(--text-primary);
+      background: var(--bg); outline: none; appearance: none; cursor: pointer;
+    }
+    .form-select:focus { border-color: var(--teal); }
+    .form-hint { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+    .modal-success { text-align: center; padding: 12px 0 4px; }
+    .modal-success-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--teal-light); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+    .modal-success-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .modal-success-sub { font-size: 12px; color: var(--text-muted); }
+
+    /* ══════════════════════════════════════════
+       PAGE: INDICATOR FEEDBACK
+    ══════════════════════════════════════════ */
+    .feedback-layout { display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start; }
+    .feedback-form-section { margin-bottom: 20px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; display: block; }
+    .form-select-full {
+      width: 100%; padding: 9px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 13px; font-family: inherit;
+      color: var(--text-primary); background: var(--surface); outline: none;
+    }
+    .form-select-full:focus { border-color: var(--teal); }
+    .form-textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 13px; font-family: inherit;
+      color: var(--text-primary); background: var(--surface); outline: none;
+      resize: vertical; min-height: 100px; line-height: 1.6;
+    }
+    .form-textarea:focus { border-color: var(--teal); }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fb-status-list { display: flex; flex-direction: column; }
+    .fb-status-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .fb-status-item:last-child { border-bottom: none; }
+    .fb-status-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .fb-status-body { flex: 1; }
+    .fb-status-title { font-size: 12px; font-weight: 600; }
+    .fb-status-meta  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .fb-status-time  { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+
+    /* ══════════════════════════════════════════
+       PAGE: ACCOUNT MANAGEMENT
+    ══════════════════════════════════════════ */
+    .acct-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
+    .acct-tab {
+      padding: 10px 18px; font-size: 13px; font-weight: 500;
+      color: var(--text-secondary); cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -2px; transition: all .15s;
+    }
+    .acct-tab:hover { color: var(--text-primary); }
+    .acct-tab.active { color: var(--teal-dark); border-bottom-color: var(--teal); }
+    .acct-panel { display: none; }
+    .acct-panel.active { display: block; }
+    .acct-actions { display: flex; gap: 8px; align-items: center; }
+    .acct-search {
+      flex: 1; padding: 7px 12px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 13px; font-family: inherit;
+      color: var(--text-primary); background: var(--surface); outline: none;
+    }
+    .acct-search:focus { border-color: var(--teal); }
+    .acct-row-actions { display: flex; gap: 6px; align-items: center; }
+    .btn-xs { padding: 3px 10px; font-size: 11px; }
+    .badge-blue   { background: var(--blue-light); color: #1D4ED8; }
+    .badge-indigo { background: #EEF2FF; color: #4338CA; }
+
+    /* ══════════════════════════════════════════
+       PAGE: ACCESS PENDING
+    ══════════════════════════════════════════ */
+    .pending-hero {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 60vh; text-align: center; gap: 16px;
+    }
+    .pending-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--amber-light); display: flex; align-items: center; justify-content: center;
+    }
+    .pending-title { font-size: 22px; font-weight: 700; color: var(--text-primary); }
+    .pending-sub   { font-size: 14px; color: var(--text-secondary); max-width: 440px; line-height: 1.6; }
+    .pending-steps { display: flex; flex-direction: column; gap: 10px; max-width: 380px; margin-top: 8px; }
+    .pending-step  { display: flex; align-items: center; gap: 12px; text-align: left; }
+    .pending-step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--teal);
+      color: #fff; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pending-step-text { font-size: 13px; color: var(--text-secondary); }
+
     /* ─ Page header breadcrumb ─ */
     .page-breadcrumb {
       font-size: 11px; color: var(--text-muted);
@@ -1073,9 +1469,250 @@
 <body>
 
 <!-- ═══════════════════════════════════════════════
+     DEMO BAR (fixed top, role switcher)
+════════════════════════════════════════════════ -->
+<div class="demo-bar" id="demo-bar">
+  <div class="demo-bar-badge">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    Demo
+  </div>
+  <div class="demo-bar-sep"></div>
+  <span class="demo-bar-label">Viewing as:</span>
+  <select class="demo-bar-select" id="role-switcher" onchange="switchRole(this.value)">
+    <option value="internal-operator">Internal Operator</option>
+    <option value="internal-admin">Internal Admin</option>
+    <option value="enterprise-user">Enterprise User</option>
+  </select>
+  <div class="demo-bar-right">
+    <span class="demo-bar-user" id="demo-bar-user-label">Not logged in</span>
+    <button class="demo-bar-login-btn" id="demo-login-btn" onclick="showLoginOverlay()">Sign In</button>
+    <button class="demo-bar-logout-btn hidden" id="demo-logout-btn" onclick="doLogout()">Sign Out</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LOGIN OVERLAY
+════════════════════════════════════════════════ -->
+<div class="login-overlay" id="login-overlay">
+
+  <!-- ── Header ── -->
+  <div class="login-header">
+    <div class="login-logo-wrap">
+      <div class="login-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div>
+        <div class="login-logo-name">SPRI</div>
+        <div class="login-logo-sub">Risk Monitor</div>
+      </div>
+    </div>
+    <div class="login-tagline">Enterprise access required — Sign in or request an approved account.</div>
+  </div>
+
+  <!-- ── Two-column card ── -->
+  <div class="login-card">
+
+    <!-- Left: Sign in -->
+    <div class="login-col">
+      <div class="login-col-title">Sign in</div>
+      <div class="login-col-sub">Use your approved SPRI account</div>
+
+      <div class="login-field">
+        <label>Work email</label>
+        <input class="login-input" id="login-email" type="email" placeholder="you@company.com" value="r.jordan@spri.io">
+      </div>
+      <div class="login-field">
+        <label>Password</label>
+        <input class="login-input" id="login-password" type="password" placeholder="••••••••" value="••••••••">
+      </div>
+
+      <!-- Role is determined by the demo-bar role-switcher -->
+
+      <button class="login-btn" onclick="doLogin()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        Sign In
+      </button>
+
+      <button class="login-sso-btn" onclick="alert('SSO is available in the production environment.')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Sign in with Enterprise SSO
+        <span class="login-sso-badge">Production only</span>
+      </button>
+
+      <div class="login-divider"></div>
+      <a class="login-access-link" onclick="showAccessHelp()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Having trouble accessing? View IT allowlist guide
+      </a>
+    </div>
+
+    <!-- Right: Request access -->
+    <div class="login-col">
+      <div class="login-col-title">Request access</div>
+      <div class="login-col-sub">Submit an account request for admin approval</div>
+
+      <div class="login-field">
+        <label>Full name</label>
+        <input class="login-input" type="text" placeholder="Jane Lee">
+      </div>
+      <div class="login-field">
+        <label>Company</label>
+        <input class="login-input" type="text" placeholder="Acme Treasury">
+      </div>
+      <div class="login-field">
+        <label>Work email</label>
+        <input class="login-input" id="req-email" type="email" placeholder="you@company.com">
+      </div>
+      <div class="login-field">
+        <label>Access purpose</label>
+        <textarea class="login-textarea" placeholder="Describe why you need access to SPRI (e.g. risk monitoring for USD positions, compliance review…)"></textarea>
+      </div>
+
+      <button class="login-submit-btn" onclick="submitAccessRequest()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Submit request
+      </button>
+    </div>
+
+  </div><!-- end .login-card -->
+
+  <!-- ── Demo chip bar ── -->
+  <div class="login-demo-bar">
+    <span class="login-demo-label">Demo — click a role to sign in instantly:</span>
+    <div class="login-demo-roles" id="login-demo-roles"></div>
+  </div>
+
+</div><!-- end #login-overlay -->
+
+<!-- ═══════════════════════════════════════════════
+     AUX OVERLAY 1: Enterprise Access Help (image-3)
+════════════════════════════════════════════════ -->
+<div class="aux-overlay hidden" id="access-help-overlay">
+  <div class="aux-card">
+
+    <div class="aux-icon-wrap teal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0BBFB2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+
+    <div class="aux-title">Enterprise Access Help</div>
+    <div class="aux-sub">
+      If your company network allows this domain, you can access SPRI directly.
+      If this page is blocked by your company firewall, forward the checklist below
+      to your IT team to request an allowlist exemption.
+    </div>
+
+    <div class="aux-section-label">IT Allowlist Checklist</div>
+    <ul class="aux-checklist">
+      <li>
+        <span class="aux-check-dot active"></span>
+        <div>
+          <div class="aux-check-main">spri.io / spri-risk</div>
+          <div class="aux-check-desc">Application domain — host of the platform</div>
+        </div>
+      </li>
+      <li>
+        <span class="aux-check-dot active"></span>
+        <div>
+          <div class="aux-check-main">api.auth.nuvante.io</div>
+          <div class="aux-check-desc">API subdomain — required for auth requests</div>
+        </div>
+      </li>
+      <li>
+        <span class="aux-check-dot passive"></span>
+        <div>
+          <div class="aux-check-main">spri.io/spri-risk/security/sltfitres…</div>
+          <div class="aux-check-desc">SSO callback — required only if using SSO browser</div>
+        </div>
+      </li>
+      <li>
+        <span class="aux-check-dot passive"></span>
+        <div>
+          <div class="aux-check-main">support.nuvante.io</div>
+          <div class="aux-check-desc">Support contact — for admin support access</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="aux-section-label">Why your access may be blocked</div>
+    <div class="aux-blocked-box">
+      <ul>
+        <li>Your company IT policy may block access to unrecognized SaaS platforms</li>
+        <li>VPN or proxy configurations may require explicit allowlist entries</li>
+        <li>DLP (Data Prevention) policies may flag you for data access</li>
+      </ul>
+    </div>
+
+    <div class="aux-actions">
+      <button class="aux-btn-primary" onclick="copyItInstructions()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy IT Instructions
+      </button>
+      <a class="aux-back-link" onclick="hideAccessHelp()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to login
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     AUX OVERLAY 2: Account Pending Approval (image-4)
+════════════════════════════════════════════════ -->
+<div class="aux-overlay hidden" id="request-pending-overlay">
+  <div class="aux-card" style="text-align:center">
+
+    <div class="aux-icon-wrap amber" style="margin:0 auto 16px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+
+    <div class="aux-title">Account pending approval</div>
+    <div class="aux-sub">
+      Your access request was received. An internal admin will review and approve your
+      account within 1–2 business days. You'll receive an email at
+      <span class="aux-email-highlight" id="pending-email">you@company.com</span> once approved.
+    </div>
+
+    <div style="background:#F8FAFC;border-radius:10px;padding:18px 20px;text-align:left;margin-bottom:4px">
+      <div class="aux-section-label" style="margin-bottom:12px">What happens next</div>
+      <ul class="aux-steps">
+        <li>
+          <div class="aux-step-num done">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="aux-step-text">Request submitted — your email domain has been verified</div>
+        </li>
+        <li>
+          <div class="aux-step-num todo">2</div>
+          <div class="aux-step-text">Internal admin reviews your access purpose and assigns a role</div>
+        </li>
+        <li>
+          <div class="aux-step-num todo">3</div>
+          <div class="aux-step-text">You receive an email with login instructions</div>
+        </li>
+        <li>
+          <div class="aux-step-num todo">4</div>
+          <div class="aux-step-text">Sign in and access the SPRI Monitor Dashboard</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="aux-actions" style="justify-content:center;margin-top:20px">
+      <button class="aux-btn-ghost" onclick="hideRequestPending()">
+        Back to login
+      </button>
+      <button class="aux-btn-ghost" onclick="hideRequestPending(); showAccessHelp()">
+        IT access help
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
      SIDEBAR
 ════════════════════════════════════════════════ -->
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <div class="logo-mark">
       <div class="logo-icon">
@@ -1089,38 +1726,9 @@
       </div>
     </div>
   </div>
-  <div class="sidebar-role">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Risk Analyst
-  </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section">Monitoring</div>
-    <div class="nav-item active" onclick="showPage('monitor')">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      Monitor Dashboard
-      <span class="nav-badge">2</span>
-    </div>
-    <div class="nav-item" onclick="showPage('datafeed')">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-      Data Feed
-      <span class="nav-badge" style="background:var(--risk-elevated)">2</span>
-    </div>
-    <div class="nav-section">Operations</div>
-    <div class="nav-item" onclick="showPage('review')">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Reserve Review
-      <span class="nav-badge-amber">2</span>
-    </div>
-  </nav>
-  <div class="sidebar-footer">
-    <div class="user-info">
-      <div class="user-avatar">RJ</div>
-      <div>
-        <div class="user-name">Ryan Jordan</div>
-        <div class="user-role">Risk Analyst</div>
-      </div>
-    </div>
-  </div>
+  <div id="sidebar-role-badge" class="sidebar-role"></div>
+  <nav class="sidebar-nav" id="sidebar-nav"></nav>
+  <div class="sidebar-footer" id="sidebar-footer"></div>
 </aside>
 
 <!-- Mobile sidebar backdrop -->
@@ -1145,14 +1753,6 @@
     </div>
     <div class="topbar-actions">
       <span class="refresh-time">Last refresh: 12:05 UTC</span>
-      <div class="select-wrap">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <select>
-          <option>24h</option>
-          <option>7d</option>
-          <option>30d</option>
-        </select>
-      </div>
       <button class="btn btn-secondary btn-sm">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
         Refresh
@@ -1585,8 +2185,346 @@
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- ════════════════════════════════════════
+         PAGE 5: INDICATOR FEEDBACK (Enterprise + Internal)
+    ════════════════════════════════════════ -->
+    <div class="page" id="page-feedback">
+      <div class="page-breadcrumb">
+        <span onclick="showPage('monitor')">Monitor Dashboard</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Indicator Feedback</span>
+      </div>
+      <div class="section-header mb-16" style="margin-bottom:16px">
+        <div>
+          <div class="section-title">Indicator Improvement Feedback</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:3px">Submit suggestions for indicator adjustments · Track processing status</div>
+        </div>
+        <span class="badge badge-teal badge-dot">Open for submissions</span>
+      </div>
+      <div class="feedback-layout">
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                New Feedback
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="feedback-form-section">
+                <div class="form-row-2">
+                  <div>
+                    <label class="form-label">Stablecoin</label>
+                    <select class="form-select-full">
+                      <option>USDT — Tether USD</option>
+                      <option>USDC — USD Coin</option>
+                      <option>PYUSD — PayPal USD</option>
+                      <option>All Stablecoins</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Indicator / Dimension</label>
+                    <select class="form-select-full">
+                      <option>RQ — Reserve Quality</option>
+                      <option>MC — Market Confidence</option>
+                      <option>OC — On-Chain Activity</option>
+                      <option>SE — Sentiment &amp; External</option>
+                      <option>Overall Composite Score</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="feedback-form-section">
+                <label class="form-label">Feedback Type</label>
+                <select class="form-select-full">
+                  <option>Data Quality Issue</option>
+                  <option>Weighting Adjustment Suggestion</option>
+                  <option>New Data Source Proposal</option>
+                  <option>Threshold Calibration</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="feedback-form-section">
+                <label class="form-label">Detailed Description</label>
+                <textarea class="form-textarea" placeholder="Describe your feedback...">The USDT RQ-4 (Attestation Timeliness) score appears to over-penalize 13-day delays given Tether publishes quarterly. Suggest reviewing the penalty curve for quarterly vs monthly issuers.</textarea>
+              </div>
+              <div class="feedback-form-section">
+                <div class="form-row-2">
+                  <div>
+                    <label class="form-label">Priority</label>
+                    <select class="form-select-full">
+                      <option>Medium</option><option>Low</option><option>High</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Reference (optional)</label>
+                    <input class="login-input" type="text" placeholder="URL or data source" style="width:100%">
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:4px">
+                <button class="btn btn-primary" onclick="submitFeedback()">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Submit Feedback
+                </button>
+                <button class="btn btn-secondary">Save Draft</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-header">
+              <div class="card-title">My Submissions</div>
+              <span class="count-chip">3</span>
+            </div>
+            <div class="card-body" style="padding:0">
+              <div class="fb-status-list" style="padding:0 20px">
+                <div class="fb-status-item">
+                  <div class="fb-status-dot" style="background:var(--risk-normal)"></div>
+                  <div class="fb-status-body">
+                    <div class="fb-status-title">USDC RQ-1 weighting suggestion</div>
+                    <div class="fb-status-meta"><span class="badge badge-green" style="font-size:9px;padding:1px 6px">Implemented</span> Updated in v2.3</div>
+                  </div>
+                  <div class="fb-status-time">Apr 18</div>
+                </div>
+                <div class="fb-status-item">
+                  <div class="fb-status-dot" style="background:var(--risk-elevated)"></div>
+                  <div class="fb-status-body">
+                    <div class="fb-status-title">PYUSD MC-5 TVL baseline</div>
+                    <div class="fb-status-meta"><span class="badge badge-amber" style="font-size:9px;padding:1px 6px">Under Review</span> Assigned to Risk Team</div>
+                  </div>
+                  <div class="fb-status-time">May 2</div>
+                </div>
+                <div class="fb-status-item">
+                  <div class="fb-status-dot" style="background:var(--text-muted)"></div>
+                  <div class="fb-status-body">
+                    <div class="fb-status-title">USDT attestation timeliness curve</div>
+                    <div class="fb-status-meta"><span class="badge badge-gray" style="font-size:9px;padding:1px 6px">Submitted</span> Awaiting triage</div>
+                  </div>
+                  <div class="fb-status-time">May 10</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Guidelines</div></div>
+            <div class="card-body">
+              <div style="font-size:12px;color:var(--text-secondary);line-height:1.9">
+                <div>✓ Focus on specific indicators, not overall scores</div>
+                <div>✓ Provide data references when possible</div>
+                <div>✓ Reviewed within 5 business days</div>
+                <div style="color:var(--text-muted)">You'll be notified by email on status change</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         PAGE 6: ACCOUNT MANAGEMENT (Internal Admin only)
+    ════════════════════════════════════════ -->
+    <div class="page" id="page-accounts">
+      <div class="section-header mb-16" style="margin-bottom:16px">
+        <div>
+          <div class="section-title">Account Management</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:3px">Manage access requests, enterprise users, and domain allowlist</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="showInviteUserModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Invite User
+        </button>
+      </div>
+      <div class="kpi-grid" style="margin-bottom:20px">
+        <div class="kpi-card">
+          <div><div class="kpi-label">Pending Approvals</div><div class="kpi-value score-elevated">3</div><div class="kpi-sub">Awaiting review</div></div>
+          <div class="kpi-icon" style="background:var(--amber-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        </div>
+        <div class="kpi-card">
+          <div><div class="kpi-label">Active Enterprise Users</div><div class="kpi-value" style="color:var(--teal)">12</div><div class="kpi-sub">Across 4 companies</div></div>
+          <div class="kpi-icon" style="background:var(--teal-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        </div>
+        <div class="kpi-card">
+          <div><div class="kpi-label">Internal Team</div><div class="kpi-value">6</div><div class="kpi-sub">3 Analysts · 2 Operators · 1 Admin</div></div>
+          <div class="kpi-icon" style="background:var(--bg)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        </div>
+        <div class="kpi-card">
+          <div><div class="kpi-label">Allowed Domains</div><div class="kpi-value">7</div><div class="kpi-sub">Email domain allowlist</div></div>
+          <div class="kpi-icon" style="background:var(--blue-light)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        </div>
+      </div>
+      <div class="acct-tabs">
+        <div class="acct-tab active" onclick="switchAcctTab('pending',this)">Pending Approval <span class="nav-badge" style="display:inline;position:static;margin-left:4px;vertical-align:middle">3</span></div>
+        <div class="acct-tab" onclick="switchAcctTab('enterprise',this)">Enterprise Users</div>
+        <div class="acct-tab" onclick="switchAcctTab('internal',this)">Internal Team</div>
+        <div class="acct-tab" onclick="switchAcctTab('domains',this)">Domain Allowlist</div>
+      </div>
+      <div class="acct-panel active" id="acct-panel-pending">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Access Requests Awaiting Approval</div></div>
+          <div class="table-wrap">
+            <table class="spri-table">
+              <thead><tr><th>Applicant</th><th>Email</th><th>Company</th><th>Requested Role</th><th>Submitted</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><div style="font-weight:600">David Kim</div></td>
+                  <td style="font-size:12px">david.kim@blackrock.com</td>
+                  <td><span class="badge badge-blue">BlackRock</span></td>
+                  <td><span class="badge badge-teal">Enterprise User</span></td>
+                  <td style="font-size:12px;color:var(--text-muted)">May 9, 2026</td>
+                  <td><div class="acct-row-actions"><button class="btn btn-primary btn-sm" style="padding:3px 10px;font-size:11px">Approve</button><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Reject</button></div></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:600">Maria Santos</div></td>
+                  <td style="font-size:12px">m.santos@fidelity.com</td>
+                  <td><span class="badge badge-indigo">Fidelity</span></td>
+                  <td><span class="badge badge-teal">Enterprise User</span></td>
+                  <td style="font-size:12px;color:var(--text-muted)">May 8, 2026</td>
+                  <td><div class="acct-row-actions"><button class="btn btn-primary btn-sm" style="padding:3px 10px;font-size:11px">Approve</button><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Reject</button></div></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:600">Tom Wright</div></td>
+                  <td style="font-size:12px">t.wright@jpmorgan.com</td>
+                  <td><span class="badge badge-gray">JPMorgan</span></td>
+                  <td><span class="badge badge-teal">Enterprise User</span></td>
+                  <td style="font-size:12px;color:var(--text-muted)">May 7, 2026</td>
+                  <td><div class="acct-row-actions"><button class="btn btn-primary btn-sm" style="padding:3px 10px;font-size:11px">Approve</button><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Reject</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="acct-panel" id="acct-panel-enterprise">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Enterprise Users</div></div>
+          <div class="table-wrap">
+            <table class="spri-table">
+              <thead><tr><th>Name</th><th>Email</th><th>Company</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td><div style="font-weight:600">Sarah Lee</div></td><td style="font-size:12px">s.lee@blackrock.com</td><td><span class="badge badge-blue">BlackRock</span></td><td><span class="badge badge-green badge-dot">Active</span></td><td style="font-size:12px;color:var(--text-muted)">Today 10:22</td><td><button class="btn btn-secondary btn-sm" style="padding:3px 10px;font-size:11px">Revoke</button></td></tr>
+                <tr><td><div style="font-weight:600">James Park</div></td><td style="font-size:12px">j.park@blackrock.com</td><td><span class="badge badge-blue">BlackRock</span></td><td><span class="badge badge-green badge-dot">Active</span></td><td style="font-size:12px;color:var(--text-muted)">Yesterday</td><td><button class="btn btn-secondary btn-sm" style="padding:3px 10px;font-size:11px">Revoke</button></td></tr>
+                <tr><td><div style="font-weight:600">Linda Zhang</div></td><td style="font-size:12px">l.zhang@fidelity.com</td><td><span class="badge badge-indigo">Fidelity</span></td><td><span class="badge badge-amber badge-dot">Inactive</span></td><td style="font-size:12px;color:var(--text-muted)">Apr 28</td><td><button class="btn btn-secondary btn-sm" style="padding:3px 10px;font-size:11px">Revoke</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="acct-panel" id="acct-panel-internal">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Internal Team</div></div>
+          <div class="table-wrap">
+            <table class="spri-table">
+              <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th></tr></thead>
+              <tbody>
+                <tr><td><div style="font-weight:600">Alex Chen</div></td><td style="font-size:12px">a.chen@spri.io</td><td><span class="badge" style="background:#FEE2E2;color:#991B1B">Admin</span></td><td><span class="badge badge-green badge-dot">Active</span></td><td style="font-size:12px;color:var(--text-muted)">Now</td></tr>
+                <tr><td><div style="font-weight:600">Ryan Jordan</div></td><td style="font-size:12px">r.jordan@spri.io</td><td><span class="badge badge-teal">Risk Analyst</span></td><td><span class="badge badge-green badge-dot">Active</span></td><td style="font-size:12px;color:var(--text-muted)">Today 12:05</td></tr>
+                <tr><td><div style="font-weight:600">Wei Liu</div></td><td style="font-size:12px">w.liu@spri.io</td><td><span class="badge badge-purple">Operator</span></td><td><span class="badge badge-green badge-dot">Active</span></td><td style="font-size:12px;color:var(--text-muted)">Today 11:30</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="acct-panel" id="acct-panel-domains">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Email Domain Allowlist</div>
+            <button class="btn btn-primary btn-sm" onclick="showAddDomainModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Domain</button>
+          </div>
+          <div class="card-body">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Users with emails from these domains can self-register as Enterprise Users (subject to approval)</div>
+            <table class="spri-table">
+              <thead><tr><th>Domain</th><th>Company</th><th>Added By</th><th>Date</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><code class="mono">@blackrock.com</code></td><td>BlackRock</td><td style="font-size:12px;color:var(--text-muted)">Alex Chen</td><td style="font-size:12px;color:var(--text-muted)">Jan 15, 2026</td><td><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Remove</button></td></tr>
+                <tr><td><code class="mono">@fidelity.com</code></td><td>Fidelity</td><td style="font-size:12px;color:var(--text-muted)">Alex Chen</td><td style="font-size:12px;color:var(--text-muted)">Feb 3, 2026</td><td><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Remove</button></td></tr>
+                <tr><td><code class="mono">@jpmorgan.com</code></td><td>JPMorgan Chase</td><td style="font-size:12px;color:var(--text-muted)">Alex Chen</td><td style="font-size:12px;color:var(--text-muted)">Feb 3, 2026</td><td><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Remove</button></td></tr>
+                <tr><td><code class="mono">@vanguard.com</code></td><td>Vanguard</td><td style="font-size:12px;color:var(--text-muted)">Alex Chen</td><td style="font-size:12px;color:var(--text-muted)">Mar 10, 2026</td><td><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px">Remove</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- end page-accounts -->
+
+    <!-- ════════════════════════════════════════
+         PAGE 7: PENDING APPROVAL
+    ════════════════════════════════════════ -->
+    <div class="page" id="page-pending">
+      <div class="pending-hero">
+        <div class="pending-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="pending-title">Your Account is Pending Approval</div>
+        <div class="pending-sub">Your access request has been received and is under review. You'll receive an email notification once approved.</div>
+        <div class="pending-steps">
+          <div class="pending-step">
+            <div class="pending-step-num" style="background:var(--risk-normal)">✓</div>
+            <div class="pending-step-text"><strong>Step 1:</strong> Registration submitted — david.kim@blackrock.com</div>
+          </div>
+          <div class="pending-step">
+            <div class="pending-step-num" style="background:var(--amber)">2</div>
+            <div class="pending-step-text"><strong>Step 2:</strong> Admin review in progress (1–2 business days)</div>
+          </div>
+          <div class="pending-step">
+            <div class="pending-step-num" style="background:var(--border);color:var(--text-muted)">3</div>
+            <div class="pending-step-text"><strong>Step 3:</strong> Access granted — confirmation email sent</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <button class="btn btn-secondary" onclick="showPage('access-help')">Need Help?</button>
+          <button class="btn btn-secondary" onclick="doLogout()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         PAGE 8: ACCESS HELP
+    ════════════════════════════════════════ -->
+    <div class="page" id="page-access-help">
+      <div class="page-breadcrumb" id="access-help-breadcrumb">
+        <span onclick="showPage('monitor')">Monitor Dashboard</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Access Help</span>
+      </div>
+      <div class="section-header mb-16" style="margin-bottom:20px">
+        <div>
+          <div class="section-title">Access &amp; Account Help</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px">Having trouble accessing SPRI Monitor? Here's how to get started.</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Request Access</div></div>
+          <div class="card-body">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px">If your company email is on our allowlist, you can self-register. Otherwise, contact your account manager.</div>
+            <div class="login-field"><label class="form-label">Your Work Email</label><input class="login-input" type="email" placeholder="you@company.com" style="width:100%"></div>
+            <div class="login-field"><label class="form-label">Company Name</label><input class="login-input" type="text" placeholder="e.g. BlackRock, Fidelity" style="width:100%"></div>
+            <button class="btn btn-primary" style="width:100%;margin-top:4px">Submit Access Request</button>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="card-header"><div class="card-title">Supported Access Methods</div></div>
+            <div class="card-body">
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.8">
+                <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><span class="badge badge-teal" style="font-size:10px">Prototype</span> Email + Password (demo data)</div>
+                <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><span class="badge badge-green" style="font-size:10px">Production</span> SSO (SAML/OIDC) planned</div>
+                <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-gray" style="font-size:10px">Enterprise</span> Domain whitelisting supported</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Contact Support</div></div>
+            <div class="card-body"><div style="font-size:13px;color:var(--text-secondary);line-height:1.8"><div>📧 <strong>access@spri.io</strong></div><div style="margin-top:4px;color:var(--text-muted);font-size:12px">Response within 1 business day</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .content -->
+</div><!-- end .main -->
 
 <!-- (page-datafeed moved inside main layout above) -->
 
@@ -2328,7 +3266,7 @@
   const pageIds = ['page-monitor', 'page-detail', 'page-review', 'page-datafeed'];
   const navItems = document.querySelectorAll('.nav-item');
 
-  function showPage(name, coin) {
+  function showPageBase(name, coin) {
     // Hide all regular pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 
@@ -2349,9 +3287,7 @@
     document.getElementById('topbar-title').textContent = t[0];
     document.getElementById('topbar-sub').textContent   = t[1];
 
-    // Nav highlight
-    const navMap = { monitor: 0, detail: 0, review: 2, datafeed: 1 };
-    navItems.forEach((el, i) => el.classList.toggle('active', i === navMap[name]));
+    // Nav highlight — handled by renderSidebar() in showPage wrapper
     window.scrollTo(0, 0);
   }
 
@@ -2932,5 +3868,544 @@ document.addEventListener('keydown', e => {
 });
 </script>
 
+<!-- ═══════════════════════════════════════════════
+     ROLE MANAGEMENT & NEW FEATURE LOGIC
+════════════════════════════════════════════════ -->
+<script>
+/* ════════════════════════════════════════════
+   ROLE DEFINITIONS
+════════════════════════════════════════════ */
+const ROLE_CONFIGS = {
+  'internal-operator': {
+    label: 'Internal Operator',
+    displayName: 'Wei Liu',
+    email: 'w.liu@spri.io',
+    avatarInitials: 'WL',
+    avatarBg: 'var(--purple)',
+    badgeColor: 'var(--purple)',
+    badgeBg: '#EDE9FE',
+    chipBg: '#8B5CF6', chipColor: '#fff',
+    loginHint: 'w.liu@spri.io',
+    nav: [
+      { section: 'Monitoring', items: [
+        { id: 'monitor',   label: 'Monitor Dashboard', badge: '2',  badgeBg: 'var(--red)' },
+        { id: 'datafeed',  label: 'Data Feed Monitor', badge: '2',  badgeBg: 'var(--risk-elevated)' },
+      ]},
+      { section: 'Operations', items: [
+        { id: 'review',    label: 'Reserve Review',    badge: '2',  badgeBg: 'var(--amber)' },
+      ]},
+    ],
+    defaultPage: 'monitor',
+  },
+  'internal-admin': {
+    label: 'Internal Admin',
+    displayName: 'Alex Chen',
+    email: 'a.chen@spri.io',
+    avatarInitials: 'AC',
+    avatarBg: '#EF4444',
+    badgeColor: '#EF4444',
+    badgeBg: '#FEE2E2',
+    chipBg: '#EF4444', chipColor: '#fff',
+    loginHint: 'a.chen@spri.io',
+    nav: [
+      { section: 'Monitoring', items: [
+        { id: 'monitor',   label: 'Monitor Dashboard', badge: '2',  badgeBg: 'var(--red)' },
+        { id: 'datafeed',  label: 'Data Feed Monitor', badge: '2',  badgeBg: 'var(--risk-elevated)' },
+      ]},
+      { section: 'Operations', items: [
+        { id: 'review',    label: 'Reserve Review',    badge: '2',  badgeBg: 'var(--amber)' },
+      ]},
+      { section: 'Admin', items: [
+        { id: 'accounts',  label: 'Account Management', badge: '3', badgeBg: 'var(--blue)' },
+      ]},
+    ],
+    defaultPage: 'monitor',
+  },
+  'enterprise-user': {
+    label: 'Enterprise User',
+    displayName: 'Sarah Lee',
+    email: 's.lee@blackrock.com',
+    avatarInitials: 'SL',
+    avatarBg: 'var(--blue)',
+    badgeColor: 'var(--blue)',
+    badgeBg: 'var(--blue-light)',
+    chipBg: '#3B82F6', chipColor: '#fff',
+    loginHint: 's.lee@blackrock.com',
+    companyTag: 'BlackRock',
+    nav: [
+      { section: 'Monitoring', items: [
+        { id: 'monitor',   label: 'Monitor Dashboard', badge: '2',  badgeBg: 'var(--red)' },
+      ]},
+      { section: 'My Activity', items: [
+        { id: 'feedback',  label: 'Indicator Feedback' },
+      ]},
+    ],
+    defaultPage: 'monitor',
+  },
+};
+
+/* ════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════ */
+let currentRole  = null;  // null = logged out
+let isLoggedIn   = false;
+let currentNavPage = 'monitor';
+
+/* ════════════════════════════════════════════
+   SIDEBAR RENDER
+════════════════════════════════════════════ */
+function renderSidebar() {
+  const roleBadgeEl = document.getElementById('sidebar-role-badge');
+  const navEl       = document.getElementById('sidebar-nav');
+  const footerEl    = document.getElementById('sidebar-footer');
+
+  if (!isLoggedIn || !currentRole) {
+    roleBadgeEl.innerHTML = `<div style="margin:12px 16px 0;padding:9px 10px;background:#FEF3C7;border-radius:8px;font-size:13px;color:#92400E;font-weight:600;display:flex;align-items:center;gap:8px">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Not signed in
+    </div>`;
+    navEl.innerHTML = `<div style="padding:20px 16px;font-size:12px;color:var(--text-muted);line-height:1.6">Sign in to access the platform.</div>`;
+    footerEl.innerHTML = `<div class="user-info"><div class="user-avatar" style="background:var(--border);color:var(--text-muted)">?</div><div><div class="user-name" style="color:var(--text-muted)">Guest</div><div class="user-role">Not signed in</div></div></div>`;
+    return;
+  }
+
+  const cfg = ROLE_CONFIGS[currentRole];
+
+  // Role badge
+  roleBadgeEl.innerHTML = `<div style="margin:12px 16px 0;padding:9px 10px;background:${cfg.badgeBg || 'var(--teal-light)'};border-radius:8px;font-size:13px;color:${cfg.badgeColor || cfg.avatarBg};font-weight:600;display:flex;align-items:center;gap:8px">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    ${cfg.label}${cfg.companyTag ? ' · ' + cfg.companyTag : ''}
+  </div>`;
+
+  // Nav items
+  let navHtml = '';
+  cfg.nav.forEach(group => {
+    navHtml += `<div class="nav-section">${group.section}</div>`;
+    group.items.forEach(item => {
+      const icons = {
+        monitor:  `<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>`,
+        datafeed: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>`,
+        review:   `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
+        accounts: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+        feedback: `<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>`,
+      };
+      const isActive = currentNavPage === item.id;
+      const badgeHtml = item.badge ? `<span class="nav-badge" style="background:${item.badgeBg || 'var(--red)'}">${item.badge}</span>` : '';
+      navHtml += `<div class="nav-item ${isActive ? 'active' : ''}" onclick="showPage('${item.id}')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icons[item.id] || ''}</svg>
+        ${item.label}
+        ${badgeHtml}
+      </div>`;
+    });
+  });
+  navEl.innerHTML = navHtml;
+
+  // Footer user info
+  footerEl.innerHTML = `<div class="user-info">
+    <div class="user-avatar" style="background:${cfg.avatarBg}">${cfg.avatarInitials}</div>
+    <div>
+      <div class="user-name">${cfg.displayName}</div>
+      <div class="user-role">${cfg.label}</div>
+    </div>
+  </div>`;
+}
+
+/* ════════════════════════════════════════════
+   OVERRIDE showPage() to add new pages & role guards
+════════════════════════════════════════════ */
+function showPage(name, coin) {
+  // Guard: enterprise-user cannot see datafeed, review, accounts
+  if (isLoggedIn && currentRole === 'enterprise-user' && ['datafeed','review','accounts'].includes(name)) {
+    return;
+  }
+  // Guard: non-admin cannot see accounts
+  if (isLoggedIn && currentRole !== 'internal-admin' && name === 'accounts') {
+    return;
+  }
+
+  // New pages handled separately
+  const newPages = ['feedback', 'accounts', 'pending', 'access-help'];
+  if (newPages.includes(name)) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const el = document.getElementById('page-' + name);
+    if (el) el.classList.add('active');
+
+    const titleMap = {
+      'feedback':    ['Indicator Feedback',  'My Activity › Submissions'],
+      'accounts':    ['Account Management',  'Admin › Users & Access'],
+      'pending':     ['Access Pending',      'Your request is under review'],
+      'access-help': ['Access Help',         'Support › Getting Access'],
+    };
+    const t = titleMap[name] || [name, ''];
+    document.getElementById('topbar-title').textContent = t[0];
+    document.getElementById('topbar-sub').textContent   = t[1];
+
+    currentNavPage = name;
+    renderSidebar();
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  // Delegate to base for existing pages
+  showPageBase(name, coin);
+  currentNavPage = name;
+  renderSidebar();
+}
+
+/* ════════════════════════════════════════════
+   LOGIN / LOGOUT
+════════════════════════════════════════════ */
+function showLoginOverlay() {
+  document.getElementById('login-overlay').classList.remove('hidden');
+  updateLoginHint();
+}
+function hideLoginOverlay() {
+  document.getElementById('login-overlay').classList.add('hidden');
+}
+function updateLoginHint() {
+  // Render demo role chips
+  const chips = Object.entries(ROLE_CONFIGS).map(([key, cfg]) =>
+    `<span class="login-demo-chip" style="background:${cfg.chipBg};color:${cfg.chipColor}" onclick="autoFillRole('${key}')">${cfg.label}</span>`
+  ).join('');
+  document.getElementById('login-demo-roles').innerHTML = chips;
+
+  // Pre-select based on current role switcher
+  const sel = document.getElementById('role-switcher');
+  if (sel && ROLE_CONFIGS[sel.value]) {
+    document.getElementById('login-email').value = ROLE_CONFIGS[sel.value].loginHint;
+  }
+}
+function autoFillRole(roleKey) {
+  const cfg = ROLE_CONFIGS[roleKey];
+  document.getElementById('login-email').value = cfg.loginHint;
+  document.getElementById('role-switcher').value = roleKey;
+  doLogin();
+}
+function doLogin() {
+  const sel = document.getElementById('role-switcher');
+  currentRole = sel.value;
+  isLoggedIn  = true;
+  hideLoginOverlay();
+  updateDemoBar();
+  renderSidebar();
+
+  // Navigate to default page for role
+  const cfg = ROLE_CONFIGS[currentRole];
+  if (cfg) showPage(cfg.defaultPage);
+}
+function doLogout() {
+  isLoggedIn  = false;
+  currentRole = null;
+  currentNavPage = 'monitor';
+  updateDemoBar();
+  renderSidebar();
+  // Show login overlay
+  showLoginOverlay();
+}
+function updateDemoBar() {
+  const userLabel    = document.getElementById('demo-bar-user-label');
+  const loginBtn     = document.getElementById('demo-login-btn');
+  const logoutBtn    = document.getElementById('demo-logout-btn');
+  if (isLoggedIn && currentRole) {
+    const cfg = ROLE_CONFIGS[currentRole];
+    userLabel.textContent = cfg.displayName + ' (' + cfg.label + ')';
+    loginBtn.style.display  = 'none';
+    logoutBtn.style.display = 'block';
+  } else {
+    userLabel.textContent   = 'Not logged in';
+    loginBtn.style.display  = 'block';
+    logoutBtn.style.display = 'none';
+  }
+}
+function switchRole(roleKey) {
+  currentRole = roleKey;
+  if (isLoggedIn) {
+    updateDemoBar();
+    renderSidebar();
+    const cfg = ROLE_CONFIGS[currentRole];
+    if (cfg) showPage(cfg.defaultPage);
+  }
+}
+
+/* ════════════════════════════════════════════
+   ACCOUNT MANAGEMENT TAB SWITCH
+════════════════════════════════════════════ */
+function switchAcctTab(tabId, el) {
+  document.querySelectorAll('.acct-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.acct-panel').forEach(p => p.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const panel = document.getElementById('acct-panel-' + tabId);
+  if (panel) panel.classList.add('active');
+}
+
+/* ════════════════════════════════════════════
+   FEEDBACK SUBMIT (toast)
+════════════════════════════════════════════ */
+function submitFeedback() {
+  const toast = document.getElementById('toast');
+  toast.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Feedback submitted successfully. You'll be notified when status changes.`;
+  toast.style.display = 'flex';
+  setTimeout(() => { toast.style.display = 'none'; }, 3500);
+}
+
+/* ════════════════════════════════════════════
+   INIT — show login on page load
+════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   MODAL: INVITE USER
+═══════════════════════════════════════ */
+function handleModalBackdropClick(e, modalId, closeFn) {
+  if (e.target.id === modalId) closeFn();
+}
+function showInviteUserModal() {
+  document.getElementById('invite-user-body').innerHTML = `
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-input" id="invite-name" placeholder="e.g. John Smith">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Work Email</label>
+      <input type="email" class="form-input" id="invite-email" placeholder="name@company.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Role</label>
+      <select class="form-select" id="invite-role">
+        <option value="enterprise-user">Enterprise User</option>
+        <option value="internal-operator">Internal Operator</option>
+        <option value="internal-admin">Internal Admin</option>
+      </select>
+      <div class="form-hint">Enterprise Users require email domain to be on the allowlist.</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Company <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+      <input type="text" class="form-input" id="invite-company" placeholder="Company name">
+    </div>`;
+  document.querySelector('#modal-invite-user .modal-footer').innerHTML = `
+    <button class="btn btn-secondary btn-sm" onclick="closeInviteUserModal()">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="submitInviteUser()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Send Invitation
+    </button>`;
+  document.getElementById('modal-invite-user').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeInviteUserModal() {
+  document.getElementById('modal-invite-user').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+function submitInviteUser() {
+  const name  = (document.getElementById('invite-name')?.value || '').trim();
+  const email = (document.getElementById('invite-email')?.value || '').trim();
+  if (!name || !email) {
+    document.getElementById('invite-name').style.borderColor = name ? '' : 'var(--red)';
+    document.getElementById('invite-email').style.borderColor = email ? '' : 'var(--red)';
+    return;
+  }
+  const roleLabel = { 'enterprise-user': 'Enterprise User', 'internal-operator': 'Internal Operator', 'internal-admin': 'Internal Admin' };
+  const role = document.getElementById('invite-role')?.value || 'enterprise-user';
+  document.getElementById('invite-user-body').innerHTML = `
+    <div class="modal-success">
+      <div class="modal-success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="modal-success-title">Invitation Sent!</div>
+      <div class="modal-success-sub">An invitation email has been sent to<br><strong>${email}</strong> as <em>${roleLabel[role]||role}</em>.</div>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted)">They will receive a link to set up their account. The link expires in 72 hours.</div>
+    </div>`;
+  document.querySelector('#modal-invite-user .modal-footer').innerHTML = `
+    <button class="btn btn-primary btn-sm" onclick="closeInviteUserModal()">Done</button>`;
+}
+
+/* ═══════════════════════════════════════
+   MODAL: ADD DOMAIN
+═══════════════════════════════════════ */
+function showAddDomainModal() {
+  document.getElementById('add-domain-body').innerHTML = `
+    <div class="form-group">
+      <label class="form-label">Email Domain</label>
+      <input type="text" class="form-input" id="add-domain-input" placeholder="e.g. @company.com">
+      <div class="form-hint">Users with emails from this domain can self-register as Enterprise Users (subject to approval).</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Company Name</label>
+      <input type="text" class="form-input" id="add-domain-company" placeholder="e.g. Vanguard">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+      <input type="text" class="form-input" id="add-domain-notes" placeholder="e.g. Enterprise partnership — approved by management">
+    </div>`;
+  document.querySelector('#modal-add-domain .modal-footer').innerHTML = `
+    <button class="btn btn-secondary btn-sm" onclick="closeAddDomainModal()">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="submitAddDomain()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Domain
+    </button>`;
+  document.getElementById('modal-add-domain').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeAddDomainModal() {
+  document.getElementById('modal-add-domain').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+function submitAddDomain() {
+  const domain  = (document.getElementById('add-domain-input')?.value || '').trim();
+  const company = (document.getElementById('add-domain-company')?.value || '').trim();
+  if (!domain) {
+    document.getElementById('add-domain-input').style.borderColor = 'var(--red)';
+    return;
+  }
+  const displayDomain = domain.startsWith('@') ? domain : '@' + domain;
+  const displayCompany = company || '—';
+  // Append row to domain table
+  const tbody = document.querySelector('#acct-panel-domains table tbody');
+  if (tbody) {
+    const today = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><code class="mono">${displayDomain}</code></td><td>${displayCompany}</td><td style="font-size:12px;color:var(--text-muted)">Alex Chen</td><td style="font-size:12px;color:var(--text-muted)">${today}</td><td><button class="btn btn-danger btn-sm" style="padding:3px 10px;font-size:11px" onclick="this.closest('tr').remove()">Remove</button></td>`;
+    tbody.appendChild(tr);
+    // Update KPI count
+    const domainKpi = document.querySelector('.kpi-card:last-child .kpi-value');
+    if (domainKpi) domainKpi.textContent = parseInt(domainKpi.textContent||'0') + 1;
+  }
+  document.getElementById('add-domain-body').innerHTML = `
+    <div class="modal-success">
+      <div class="modal-success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="modal-success-title">Domain Added!</div>
+      <div class="modal-success-sub"><strong>${displayDomain}</strong> (${displayCompany}) has been added to the allowlist.</div>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted)">Users with this email domain can now self-register as Enterprise Users (subject to admin approval).</div>
+    </div>`;
+  document.querySelector('#modal-add-domain .modal-footer').innerHTML = `
+    <button class="btn btn-primary btn-sm" onclick="closeAddDomainModal()">Done</button>`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {  renderSidebar();
+  updateDemoBar();
+  showLoginOverlay();
+  updateLoginHint();
+});
+
+/* ════════════════════════════════════════════
+   AUX OVERLAYS
+════════════════════════════════════════════ */
+function showAccessHelp() {
+  document.getElementById('access-help-overlay').classList.remove('hidden');
+}
+function hideAccessHelp() {
+  document.getElementById('access-help-overlay').classList.add('hidden');
+}
+
+function submitAccessRequest() {
+  const email = (document.getElementById('req-email').value || '').trim();
+  const display = email || 'you@company.com';
+  document.getElementById('pending-email').textContent = display;
+  document.getElementById('request-pending-overlay').classList.remove('hidden');
+}
+function hideRequestPending() {
+  document.getElementById('request-pending-overlay').classList.add('hidden');
+}
+
+function copyItInstructions() {
+  const text = [
+    'SPRI IT Allowlist Instructions',
+    '================================',
+    '1. Application domain : spri.io/spri-risk',
+    '2. API subdomain       : api.auth.nuvante.io',
+    '3. SSO callback        : spri.io/spri-risk/security/sltfitres (only if using SSO)',
+    '4. Support contact     : support.nuvante.io',
+    '',
+    'Please add the above domains to your corporate firewall / proxy allowlist.',
+    'Contact support@nuvante.io if you need further assistance.',
+  ].join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('#access-help-overlay .aux-btn-primary');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  }).catch(() => alert('Copy failed — please copy manually.'));
+}
+</script>
+
+<!-- ════════════════════════════════════════
+     MODALS (body-level, outside all stacking contexts)
+════════════════════════════════════════ -->
+
+<!-- MODAL: INVITE USER -->
+<div class="modal-backdrop hidden" id="modal-invite-user" onclick="handleModalBackdropClick(event,'modal-invite-user',closeInviteUserModal)">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">Invite User</div>
+      <button class="modal-close" onclick="closeInviteUserModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="invite-user-body">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" id="invite-name" placeholder="e.g. John Smith">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Work Email</label>
+        <input type="email" class="form-input" id="invite-email" placeholder="name@company.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Role</label>
+        <select class="form-select" id="invite-role">
+          <option value="enterprise-user">Enterprise User</option>
+          <option value="internal-operator">Internal Operator</option>
+          <option value="internal-admin">Internal Admin</option>
+        </select>
+        <div class="form-hint">Enterprise Users require email domain to be on the allowlist.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+        <input type="text" class="form-input" id="invite-company" placeholder="Company name">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeInviteUserModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="submitInviteUser()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send Invitation
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ADD DOMAIN -->
+<div class="modal-backdrop hidden" id="modal-add-domain" onclick="handleModalBackdropClick(event,'modal-add-domain',closeAddDomainModal)">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">Add Email Domain</div>
+      <button class="modal-close" onclick="closeAddDomainModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="add-domain-body">
+      <div class="form-group">
+        <label class="form-label">Email Domain</label>
+        <input type="text" class="form-input" id="add-domain-input" placeholder="e.g. @company.com">
+        <div class="form-hint">Users with emails from this domain can self-register as Enterprise Users (subject to approval).</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company Name</label>
+        <input type="text" class="form-input" id="add-domain-company" placeholder="e.g. Vanguard">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+        <input type="text" class="form-input" id="add-domain-notes" placeholder="e.g. Enterprise partnership — approved by management">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeAddDomainModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="submitAddDomain()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Domain
+      </button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
